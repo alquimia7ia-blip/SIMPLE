@@ -26,8 +26,10 @@
   --fuente-texto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Helvetica, Arial, sans-serif;
 
-  --texto-instruccion: 1.5rem;   /* 24 · Inter 600 · la acción del momento */
-  --texto-grande: 1.125rem;      /* 18 · Inter 400 · diálogo */
+  --texto-titular: 1.375rem;     /* 22 · Inter 600 · título de la app */
+  --texto-instruccion: 1.75rem;  /* 28 · Inter 600 · la acción del momento */
+  --texto-grande: 1.25rem;       /* 20 · Inter 400 · diálogo y opciones */
+  --texto-item: 1.125rem;        /* 18 · Inter 500 · elementos de la app */
   --texto-base: 1rem;            /* 16 · mínimo absoluto en producto */
   --texto-chrome: 0.8125rem;     /* 13 · solo la barra de estado simulada */
 

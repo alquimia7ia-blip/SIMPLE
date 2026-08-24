@@ -52,10 +52,10 @@ export function ExperienciaCentral() {
   const varianteAnillo: VarianteGuia =
     estado === 'pasoCompletado' ? 'completado' : estado === 'terminado' ? 'terminado' : 'guiando'
 
-  /* Los mensajes se acumulan, pero la superficie solo muestra los dos
-     últimos: la conversación no debe crecer hasta tapar la pantalla de la
-     persona. «Déjame ver…» no es un mensaje sino una espera, y se retira
-     cuando llega la pregunta. */
+  /* Una cosa a la vez: la superficie muestra el mensaje del momento y no
+     una conversación que crece hasta tapar la pantalla de la persona.
+     «Déjame ver…» no es un mensaje sino una espera, y se retira cuando
+     llega la pregunta. */
   const mensajes =
     indice === null
       ? []
@@ -68,7 +68,7 @@ export function ExperienciaCentral() {
                 b.estado === 'personaHabla' ||
                 b.estado === 'confirmando'),
           )
-          .slice(-2)
+          .slice(-1)
 
   return (
     <section className="experiencia" aria-label="Cómo funciona Simple">
@@ -129,18 +129,19 @@ export function ExperienciaCentral() {
 
             {estado === 'cierre' && <p className="instruccion">{beat?.texto}</p>}
 
-            {indice !== null && estado !== 'activando' && (
-              <button type="button" className="salida" onClick={reiniciar}>
-                {empezarDeNuevo}
-              </button>
-            )}
           </div>
         }
       />
 
-      <p className="experiencia__invitacion" data-visible={estado === 'reposo'}>
-        {invitacion}
-      </p>
+      <div className="experiencia__pie">
+        {estado === 'reposo' ? (
+          <p className="experiencia__invitacion">{invitacion}</p>
+        ) : (
+          <button type="button" className="salida" onClick={reiniciar}>
+            {empezarDeNuevo}
+          </button>
+        )}
+      </div>
     </section>
   )
 }

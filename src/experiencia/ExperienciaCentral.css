@@ -8,14 +8,14 @@
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: 72px var(--e3);
+  padding: clamp(16px, 3vh, 40px) var(--e3);
 }
 
 .experiencia {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--e3);
+  gap: var(--e2);
   width: 100%;
   max-width: 680px;
 }
@@ -23,27 +23,33 @@
 /* El bloqueo se dice con palabras, nunca se ilustra. */
 .experiencia__situacion {
   font-size: var(--texto-grande);
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--slate);
   text-align: center;
+  text-wrap: balance;
   max-width: 30ch;
 }
 
+.experiencia__pie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
 .experiencia__invitacion {
-  font-size: var(--texto-base);
+  font-size: var(--texto-item);
   color: var(--slate);
   text-align: center;
 }
 
 /* Nada salta al aparecer o desaparecer: el hueco se reserva siempre. */
-.experiencia__situacion[data-visible='false'],
-.experiencia__invitacion[data-visible='false'] {
+.experiencia__situacion[data-visible='false'] {
   opacity: 0;
   visibility: hidden;
 }
 
-.experiencia__situacion,
-.experiencia__invitacion {
+.experiencia__situacion {
   transition: opacity var(--dur-aparicion) var(--curva-salida);
 }
 
@@ -51,8 +57,8 @@
 
 .telefono {
   position: relative;
-  width: min(340px, 86vw);
-  aspect-ratio: 340 / 680;
+  width: min(360px, 86vw);
+  height: min(700px, calc(100dvh - 190px));
   display: flex;
   flex-direction: column;
   background: var(--cloud);
@@ -80,8 +86,8 @@
 
 /* Arriba: dónde estamos. Nunca en porcentaje. */
 .telefono__paso {
-  min-height: 26px;
-  margin-bottom: 4px;
+  min-height: 24px;
+  margin-bottom: 2px;
   font-size: var(--texto-base);
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -98,7 +104,7 @@
 /* --- La app simulada · neutra, sin azul propio ----------------------- */
 
 .app__titulo {
-  font-size: 20px;
+  font-size: var(--texto-titular);
   font-weight: 600;
   margin: 0 0 12px;
 }
@@ -119,7 +125,7 @@
   gap: 2px;
   width: 100%;
   min-height: 56px;
-  padding: 14px 16px;
+  padding: 12px 16px;
   text-align: left;
   background: var(--mist);
   border-radius: var(--radio-superficie);
@@ -127,7 +133,7 @@
 }
 
 .app__objetivo[data-principal='true'] {
-  margin-top: var(--e2);
+  margin-top: var(--e1);
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -138,7 +144,7 @@
 }
 
 .app__item-titulo {
-  font-size: var(--texto-base);
+  font-size: var(--texto-item);
   font-weight: 500;
   color: var(--ink);
 }
@@ -212,7 +218,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: var(--e2);
+  padding: 14px 16px;
   background: var(--blue-050);
   border-radius: 20px 20px 0 0;
   opacity: 0;
@@ -230,7 +236,7 @@
 .inferior {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* --- Conversación ---------------------------------------------------- */
@@ -310,7 +316,6 @@
 }
 
 .salida {
-  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   min-height: 48px;
@@ -438,8 +443,61 @@
   }
 }
 
-@media (min-width: 640px) {
-  .pagina {
-    padding: 120px var(--e4);
+/* En pantallas estrechas o bajas el conjunto se comprime antes que
+   permitir que la superficie de Simple tape el objetivo señalado. */
+@media (max-width: 899px) {
+  .experiencia {
+    --texto-instruccion: 1.5rem;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 899px) {
+  .experiencia {
+    --texto-grande: 1.125rem;
+    --texto-titular: 1.25rem;
+  }
+
+  .experiencia__pie {
+    min-height: 44px;
+  }
+
+  .telefono {
+    height: calc(100dvh - 172px);
+  }
+}
+
+/* Con ancho suficiente, el pensamiento se sitúa al lado del teléfono y
+   este se queda con todo el alto disponible: la experiencia completa —
+   el anillo incluido— se ve sin desplazarse. */
+@media (min-width: 900px) {
+  .experiencia {
+    display: grid;
+    grid-template-columns: minmax(0, 260px) auto;
+    grid-template-areas:
+      'situacion telefono'
+      'pie telefono';
+    align-items: center;
+    column-gap: var(--e5);
+    row-gap: var(--e2);
+    max-width: none;
+    width: auto;
+  }
+
+  .experiencia__situacion {
+    grid-area: situacion;
+    align-self: end;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .experiencia__pie {
+    grid-area: pie;
+    align-self: start;
+    justify-content: flex-end;
+  }
+
+  .telefono {
+    grid-area: telefono;
+    height: min(700px, calc(100dvh - 64px));
   }
 }
