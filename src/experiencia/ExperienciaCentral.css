@@ -164,12 +164,26 @@
     transform var(--dur-toque) var(--curva-entrada);
 }
 
-.boton-flotante__marca {
+/* Respira el disco, nunca el símbolo. */
+.boton-flotante__disco {
+  grid-area: 1 / 1;
   width: 56px;
   height: 56px;
   border-radius: 50%;
   background: var(--blue-500);
   animation: respirar var(--dur-respiracion) ease-in-out infinite;
+}
+
+/* 32px de símbolo en 56px de botón: 12px de aire por lado, por encima
+   del área de respeto (1,5 × ø del punto = 7,2px a este tamaño). */
+.boton-flotante__simbolo {
+  /* La respiración del disco crea contexto de apilamiento: el símbolo
+     necesita posición propia para quedar por encima. */
+  position: relative;
+  grid-area: 1 / 1;
+  width: 32px;
+  height: 32px;
+  color: var(--cloud);
 }
 
 .boton-flotante[data-visible='false'] {
