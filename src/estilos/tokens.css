@@ -1,0 +1,57 @@
+/*
+  Tokens mínimos para la experiencia central de Simple.
+  Fuente: Manual de Marca de Simple, capítulos 13, 14, 15 y 19.
+  Solo se declara lo que esta fase usa. El resto del sistema se añade
+  cuando exista la sección que lo necesite.
+*/
+
+:root {
+  /* --- Color · cap. 13 ------------------------------------------------ */
+  --cloud: #f7f8f6;      /* fondo por defecto */
+  --mist: #e9eeea;       /* superficies y tarjetas, sin bordes */
+  --ink: #1f2933;        /* texto principal · 13,9:1 sobre Cloud */
+  --slate: #66717a;      /* texto secundario · 4,7:1 · nunca bajo 16px */
+  --blue-500: #4f7cac;   /* acción: botón flotante y anillo. Nunca texto */
+  --blue-700: #3a5f87;   /* única versión del azul que toca texto · 6,2:1 */
+  --green-500: #5e9b76;  /* confirmación: anillo. Nunca texto */
+  --green-700: #3f7a57;  /* confirmación en texto · 4,8:1 */
+
+  /* Escala tonal del azul. El Manual nombra 050 y 100 pero no publica
+     sus valores: derivados como mezcla del 500 sobre Cloud al 10% y 20%.
+     Pendiente de confirmar contra el archivo maestro de color. */
+  --blue-050: #e6ecef;
+  --blue-100: #d5dfe7;
+
+  /* --- Tipografía · cap. 15 ------------------------------------------- */
+  --fuente-texto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+
+  --texto-instruccion: 1.5rem;   /* 24 · Inter 600 · la acción del momento */
+  --texto-grande: 1.125rem;      /* 18 · Inter 400 · diálogo */
+  --texto-base: 1rem;            /* 16 · mínimo absoluto en producto */
+  --texto-chrome: 0.8125rem;     /* 13 · solo la barra de estado simulada */
+
+  /* --- Espacio · base 8 ----------------------------------------------- */
+  --e1: 8px;
+  --e2: 16px;
+  --e3: 24px;
+  --e4: 32px;
+  --e5: 40px;
+
+  /* --- Radios ---------------------------------------------------------- */
+  --radio-boton: 12px;
+  --radio-superficie: 12px;
+  --radio-burbuja: 16px;
+  --radio-telefono: 44px;
+
+  /* --- Movimiento · cap. 19 ------------------------------------------- */
+  --curva-entrada: cubic-bezier(0, 0, 0.2, 1);
+  --curva-salida: cubic-bezier(0.4, 0, 1, 1);
+  --curva-guia: cubic-bezier(0.33, 0, 0.15, 1);
+
+  --dur-toque: 120ms;
+  --dur-aparicion: 240ms;
+  --dur-paso: 320ms;
+  --dur-anillo: 480ms;
+  --dur-respiracion: 2600ms;
+}

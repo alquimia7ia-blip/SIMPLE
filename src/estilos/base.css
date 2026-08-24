@@ -1,0 +1,56 @@
+/*
+  Base mínima. Reset corto, tipografía por defecto, foco y reduce motion.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p,
+figure {
+  margin: 0;
+}
+
+body {
+  background: var(--cloud);
+  color: var(--ink);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Foco de teclado · Blue 700, 2px, 2px de separación */
+:focus-visible {
+  outline: 2px solid var(--blue-700);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Cap. 14: con reduce motion, todo movimiento se sustituye por opacidad.
+   Ninguna información vive solo en la animación: cada estado se dice
+   además con palabras, así que la secuencia sigue siendo comprensible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: opacity !important;
+    transition-duration: var(--dur-aparicion) !important;
+  }
+}
