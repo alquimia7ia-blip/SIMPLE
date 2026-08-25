@@ -25,6 +25,8 @@
   /* --- Tipografía · cap. 15 ------------------------------------------- */
   --fuente-texto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Helvetica, Arial, sans-serif;
+  --fuente-display: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
   --texto-titular: 1.375rem;     /* 22 · Inter 600 · título de la app */
   --texto-instruccion: 1.75rem;  /* 28 · Inter 600 · la acción del momento */

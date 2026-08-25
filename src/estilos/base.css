@@ -34,6 +34,14 @@ button {
   cursor: pointer;
 }
 
+/* El CTA del hero es un ancla real. El desplazamiento suave se apaga
+   solo cuando el visitante pide menos movimiento. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Foco de teclado · Blue 700, 2px, 2px de separación */
 :focus-visible {
   outline: 2px solid var(--blue-700);

@@ -1,0 +1,35 @@
+/*
+  Hero de la landing.
+
+  Una sola frase, un solo camino. El emblema de Simple es el único
+  elemento visual: sin mockup, sin captura de producto, sin ilustración
+  y sin personas — el Manual pide abrir sin enseñar todavía el producto.
+
+  El enlace es una ancla real: funciona sin JavaScript y el desplazamiento
+  suave se apaga solo cuando el visitante pide menos movimiento.
+*/
+
+import { SimboloSimple } from '../marca/SimboloSimple'
+import './Hero.css'
+
+const HEADLINE = 'Cuando no sepas qué hacer con el celular, pregúntale a Simple.'
+const CTA = 'Ver cómo funciona'
+
+export function Hero({ destino }: { destino: string }) {
+  return (
+    <section className="hero">
+      <div className="hero__interior">
+        <span className="hero__emblema" aria-hidden="true">
+          <span className="hero__disco" />
+          <SimboloSimple className="hero__simbolo" />
+        </span>
+
+        <h1 className="hero__titular">{HEADLINE}</h1>
+
+        <a className="hero__cta" href={`#${destino}`}>
+          {CTA}
+        </a>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,110 @@
+/* ---------------------------------------------------------------------
+   Hero · Manual de Marca, cap. 15 (display Manrope 800, 48–72 / 0,95),
+   cap. 13 (fondo Cloud, azul solo donde hay que mirar o tocar) y
+   cap. 14 (etiqueta de botón desde 18px semibold sobre Blue 500).
+   --------------------------------------------------------------------- */
+
+.hero {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vh, 80px) var(--e3);
+  background: var(--cloud);
+}
+
+.hero__interior {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 4.5vh, 48px);
+  text-align: center;
+}
+
+/* El emblema de marca. No es un control: no se toca, no gira y no se
+   cierra. Solo el disco respira, al 4%, como el botón del producto. */
+.hero__emblema {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+}
+
+.hero__disco {
+  grid-area: 1 / 1;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--blue-500);
+  animation: respirar-marca var(--dur-respiracion) ease-in-out infinite;
+}
+
+/* 56px de símbolo en 96px de disco: 20px de aire por lado, muy por
+   encima del área de respeto (1,5 × ø del punto = 12,6px a este tamaño). */
+.hero__simbolo {
+  position: relative;
+  grid-area: 1 / 1;
+  width: 56px;
+  height: 56px;
+  color: var(--cloud);
+}
+
+@keyframes respirar-marca {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.hero__titular {
+  max-width: 19ch;
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 0 var(--e4);
+  font-size: var(--texto-item);
+  font-weight: 600;
+  color: var(--cloud);
+  text-decoration: none;
+  background: var(--blue-500);
+  border-radius: var(--radio-boton);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.hero__cta:hover {
+  background: var(--blue-700);
+}
+
+.hero__cta:active {
+  transform: translateY(2px);
+}
+
+@media (max-width: 639px) {
+  .hero__emblema,
+  .hero__disco {
+    width: 88px;
+    height: 88px;
+  }
+
+  .hero__simbolo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .hero__titular {
+    max-width: 15ch;
+    line-height: 1;
+  }
+}
