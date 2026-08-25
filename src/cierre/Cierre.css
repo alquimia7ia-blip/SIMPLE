@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------------------
+   Cierre · el último momento. Azul profundo, el símbolo grande, una
+   sola acción y la firma de marca.
+   --------------------------------------------------------------------- */
+
+.cierre-final {
+  padding: 112px var(--e3);
+  background: var(--blue-700);
+}
+
+.cierre-final__interior {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cierre-final__emblema {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+}
+
+.cierre-final__halo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--blue-100) 45%, transparent);
+}
+
+.cierre-final__simbolo {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  color: var(--cloud);
+}
+
+.cierre-final__titular {
+  max-width: 20ch;
+  margin: var(--e5) 0 0;
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--cloud);
+}
+
+.cierre-final__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 64px;
+  margin-top: var(--e5);
+  padding: 0 var(--e5);
+  font-size: var(--texto-grande);
+  font-weight: 600;
+  color: var(--blue-700);
+  text-decoration: none;
+  background: var(--cloud);
+  border-radius: var(--radio-boton);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.cierre-final__cta:hover {
+  background: var(--blue-100);
+}
+
+.cierre-final__cta:active {
+  transform: translateY(2px);
+}
+
+.cierre-final__cta:focus-visible {
+  outline-color: var(--cloud);
+}
+
+.cierre-final__firma {
+  margin: var(--e5) 0 0;
+  font-family: var(--fuente-display);
+  font-weight: 500;
+  font-size: var(--texto-item);
+  letter-spacing: 0.02em;
+  color: var(--blue-100);
+}
+
+@media (min-width: 720px) {
+  .cierre-final {
+    padding: 160px var(--e4);
+  }
+}

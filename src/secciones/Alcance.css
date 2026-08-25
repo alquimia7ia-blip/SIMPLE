@@ -1,0 +1,331 @@
+/* ---------------------------------------------------------------------
+   Alcance · cuándo ayuda, la diferencia, para quién y qué no es.
+   Continúa el sistema ya aprobado: mismos tokens, mismos glifos, mismo
+   ritmo de superficies. Sin animación.
+   --------------------------------------------------------------------- */
+
+.seccion--momentos {
+  background: var(--mist);
+}
+
+/* La única sección profunda de este bloque: es la que sostiene el
+   posicionamiento. */
+.seccion--diferencia {
+  background: var(--blue-700);
+}
+
+.seccion--diferencia .seccion__eyebrow {
+  color: var(--blue-100);
+}
+
+.seccion--diferencia .seccion__titular {
+  color: var(--cloud);
+}
+
+.seccion--quien {
+  /* Sage: calma y humanidad, el único lugar de la landing donde aporta.
+     Valor del Manual de Marca, declarado aquí y no en los tokens. */
+  --sage: #a8c3b0;
+  background: color-mix(in srgb, var(--sage) 22%, var(--cloud));
+}
+
+.seccion--noes {
+  background: var(--cloud);
+}
+
+/* --- Cuándo puede ayudar --------------------------------------------- */
+
+.momentos {
+  display: grid;
+  gap: var(--e3);
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.momento {
+  display: flex;
+  align-items: center;
+  gap: var(--e3);
+  padding: clamp(20px, 2.6vw, 28px);
+  background: var(--cloud);
+  border-radius: 20px;
+}
+
+.momento__nodo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  padding: 16px;
+  color: var(--blue-500);
+  background: var(--blue-050);
+  border-radius: 50%;
+}
+
+.momento__texto {
+  font-family: var(--fuente-display);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* El caso que el visitante acaba de ver en la demostración pesa más. */
+.momento[data-momento='2'],
+.momento[data-momento='5'] {
+  background: var(--blue-050);
+}
+
+.momento[data-momento='2'] .momento__nodo,
+.momento[data-momento='5'] .momento__nodo {
+  background: var(--cloud);
+}
+
+.momento[data-momento='6'] .momento__nodo {
+  width: 72px;
+  height: 72px;
+  padding: 18px;
+}
+
+.momento[data-momento='1'] {
+  background: var(--blue-500);
+}
+
+.momento[data-momento='1'] .momento__nodo {
+  width: 88px;
+  height: 88px;
+  padding: 22px;
+  color: var(--cloud);
+  background: transparent;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--cloud) 45%, transparent);
+}
+
+.momento[data-momento='1'] .momento__texto {
+  font-weight: 800;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  color: var(--cloud);
+}
+
+.g-punto-rect {
+  fill: currentColor;
+}
+
+/* Sobre superficie clara, el trazo tenue necesita algo más de presencia. */
+.momento .g-tenue {
+  opacity: 0.42;
+}
+
+/* --- La diferencia ---------------------------------------------------- */
+
+.contraste {
+  display: grid;
+  gap: var(--e5);
+  margin-top: 64px;
+}
+
+.contraste__lado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 32px);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--cloud) 8%, transparent);
+}
+
+.contraste__lado[data-simple='true'] {
+  background: color-mix(in srgb, var(--cloud) 14%, transparent);
+}
+
+.contraste__pantalla {
+  width: clamp(140px, 22vw, 180px);
+  height: auto;
+  overflow: visible;
+}
+
+.p-marco {
+  fill: none;
+  stroke: color-mix(in srgb, var(--cloud) 30%, transparent);
+  stroke-width: 2;
+}
+
+.p-fila {
+  fill: color-mix(in srgb, var(--cloud) 18%, transparent);
+}
+
+.p-fila[data-activa] {
+  fill: color-mix(in srgb, var(--cloud) 55%, transparent);
+}
+
+.p-halo {
+  fill: none;
+  stroke: color-mix(in srgb, var(--blue-500) 70%, transparent);
+  stroke-width: 6;
+}
+
+.p-anillo {
+  fill: none;
+  stroke: var(--blue-100);
+  stroke-width: 2;
+}
+
+.contraste__titulo {
+  margin: var(--e4) 0 0;
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  letter-spacing: -0.02em;
+  color: var(--cloud);
+}
+
+.contraste__linea {
+  max-width: 26ch;
+  margin: var(--e1) 0 0;
+  font-size: var(--texto-item);
+  line-height: 1.55;
+  color: var(--blue-100);
+}
+
+.contraste__lado:not([data-simple]) .contraste__titulo,
+.contraste__lado:not([data-simple]) .contraste__linea {
+  color: color-mix(in srgb, var(--blue-100) 72%, var(--blue-700));
+}
+
+/* --- Para quién ------------------------------------------------------- */
+
+.quien__linea {
+  max-width: 46ch;
+  margin: var(--e3) auto 0;
+  font-size: var(--texto-grande);
+  line-height: 1.6;
+  color: var(--slate);
+  text-wrap: balance;
+}
+
+.banda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.4vw, 22px);
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.banda__anillo {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--sage) 70%, var(--cloud));
+}
+
+.banda__anillo[data-i='0'],
+.banda__anillo[data-i='6'] {
+  width: 26px;
+  height: 26px;
+}
+
+.banda__anillo[data-i='1'],
+.banda__anillo[data-i='5'] {
+  width: 38px;
+  height: 38px;
+}
+
+.banda__anillo[data-i='2'],
+.banda__anillo[data-i='3'] {
+  width: 50px;
+  height: 50px;
+}
+
+/* Solo uno lleva el punto: el que lo necesita ahora. */
+.banda__anillo[data-activo] {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  box-shadow: inset 0 0 0 2px var(--blue-500);
+}
+
+.banda__anillo[data-activo]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+/* --- Qué no es -------------------------------------------------------- */
+
+.noes {
+  display: grid;
+  gap: var(--e3);
+  margin-top: 56px;
+  text-align: left;
+}
+
+.noes__lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noes__item {
+  padding: 14px 22px;
+  font-size: var(--texto-item);
+  color: var(--slate);
+  background: var(--mist);
+  border-radius: 999px;
+}
+
+.noes__si {
+  max-width: 34ch;
+  margin: var(--e3) auto 0;
+  padding: clamp(24px, 3.4vw, 36px);
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.8vw, 1.625rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--cloud);
+  background: var(--blue-500);
+  border-radius: 20px;
+}
+
+/* ===================================================================== */
+
+@media (min-width: 720px) {
+  .momentos {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  /* Composición asimétrica: el caso principal ocupa la fila entera y el
+     resto se reparte en pesos distintos. */
+  .momento[data-momento='1'] {
+    grid-column: span 6;
+  }
+
+  .momento[data-momento='2'],
+  .momento[data-momento='3'],
+  .momento[data-momento='4'],
+  .momento[data-momento='5'] {
+    grid-column: span 3;
+  }
+
+  .momento[data-momento='6'] {
+    grid-column: span 6;
+  }
+
+  .contraste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
