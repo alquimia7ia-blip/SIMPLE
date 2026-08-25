@@ -1,0 +1,8 @@
+.heroB__subhead {
+  max-width: 32ch;
+  margin-top: -8px;
+  font-size: var(--texto-grande);
+  line-height: 1.5;
+  color: var(--slate);
+  text-wrap: balance;
+}

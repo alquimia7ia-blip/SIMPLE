@@ -1,0 +1,201 @@
+/* ---------------------------------------------------------------------
+   Versión B — secciones condensadas.
+   Solo tokens existentes. Ritmo de fondos: Blue 050 → Cloud → (demo) →
+   Mist → Cloud → (cierre, azul profundo, componente reutilizado).
+   --------------------------------------------------------------------- */
+
+.seccionB {
+  padding: 80px var(--e3);
+}
+
+.seccionB--problema {
+  background: var(--blue-050);
+}
+
+.seccionB--solucion {
+  background: var(--cloud);
+  padding-bottom: var(--e4);
+}
+
+.seccionB--diferencia {
+  background: var(--mist);
+}
+
+.seccionB--oferta {
+  background: var(--cloud);
+}
+
+.seccionB__interior {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.seccionB__eyebrow {
+  margin: 0 0 var(--e2);
+  font-size: var(--texto-base);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.seccionB__titular {
+  max-width: 22ch;
+  margin: 0 auto;
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.seccionB__apoyo {
+  max-width: 42ch;
+  margin: var(--e3) auto 0;
+  font-size: var(--texto-item);
+  line-height: 1.6;
+  color: var(--slate);
+  text-wrap: balance;
+}
+
+/* --- Problema ---------------------------------------------------------- */
+
+.fraseB {
+  margin: var(--e3) 0 0;
+  font-family: var(--fuente-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  letter-spacing: -0.02em;
+  color: var(--slate);
+}
+
+.fraseB--fuerte {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* --- Solución: los tres pasos ------------------------------------------ */
+
+.pasosB {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--e4);
+  margin: var(--e4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pasosB__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--texto-item);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pasosB__n {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  color: var(--cloud);
+  background: var(--blue-500);
+  border-radius: 50%;
+}
+
+/* --- Diferencia: el contraste en una línea ----------------------------- */
+
+.contrasteB {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e2);
+  margin: var(--e4) 0 0;
+  flex-wrap: wrap;
+}
+
+.contrasteB__chip {
+  padding: 14px 22px;
+  font-size: var(--texto-item);
+  color: var(--slate);
+  background: var(--cloud);
+  border-radius: 999px;
+}
+
+.contrasteB__chip--activo {
+  font-weight: 600;
+  color: var(--cloud);
+  background: var(--blue-500);
+}
+
+.contrasteB__linea {
+  width: 28px;
+  height: 2px;
+  background: var(--blue-100);
+}
+
+/* --- Oferta / para quién ------------------------------------------------ */
+
+.chipsB {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: var(--e3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chipsB__item {
+  padding: 10px 18px;
+  font-size: var(--texto-base);
+  color: var(--blue-700);
+  background: var(--blue-050);
+  border-radius: 999px;
+}
+
+.noesB {
+  max-width: 36ch;
+  margin: var(--e3) auto 0;
+  font-size: var(--texto-base);
+  color: var(--slate);
+}
+
+.ctaB {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  margin-top: var(--e4);
+  padding: 0 var(--e5);
+  font-size: var(--texto-item);
+  font-weight: 600;
+  color: var(--cloud);
+  text-decoration: none;
+  background: var(--blue-500);
+  border-radius: var(--radio-boton);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.ctaB:hover {
+  background: var(--blue-700);
+}
+
+.ctaB:active {
+  transform: translateY(2px);
+}
+
+@media (min-width: 720px) {
+  .seccionB {
+    padding: 112px var(--e4);
+  }
+}
