@@ -110,6 +110,7 @@ export function Validacion() {
     <section className="validacion" aria-labelledby="validacion">
       <div className="validacion__interior">
         <header className="validacion__cabecera">
+          <p className="validacion__eyebrow">Tu opinión nos guía</p>
           <h2 className="validacion__titular" id="validacion">
             {TITULAR}
           </h2>

@@ -7,8 +7,17 @@
    --------------------------------------------------------------------- */
 
 .validacion {
-  padding: 88px var(--e3);
-  background: var(--cloud);
+  padding: 96px var(--e3);
+  background: var(--blue-050);
+}
+
+.validacion__eyebrow {
+  margin: 0 0 var(--e2);
+  font-size: var(--texto-base);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
 }
 
 .validacion__interior {
@@ -16,7 +25,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   text-align: center;
 }
@@ -25,8 +34,8 @@
   max-width: 18ch;
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.875rem, 4.4vw, 2.5rem);
-  line-height: 1.1;
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
   color: var(--ink);
@@ -43,17 +52,36 @@
 /* Dónde estamos: el mismo vocabulario de nodos del recorrido. */
 .avance {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 0;
   margin: 48px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .avance__nodo {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--blue-100);
+}
+
+/* El trazo que une los tres momentos: es un recorrido, no tres puntos. */
+.avance__nodo + .avance__nodo {
+  margin-left: 40px;
+}
+
+.avance__nodo + .avance__nodo::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  margin: 6px 0 0 -40px;
+  background: var(--blue-100);
+}
+
+.avance__nodo {
+  position: relative;
 }
 
 .avance__nodo[data-estado='actual'],
@@ -95,11 +123,11 @@
   display: flex;
   align-items: center;
   gap: var(--e2);
-  min-height: 64px;
-  padding: 14px var(--e3);
+  min-height: 76px;
+  padding: 16px var(--e3);
   text-align: left;
-  background: var(--mist);
-  border-radius: var(--radio-boton);
+  background: var(--cloud);
+  border-radius: 18px;
   transition:
     background var(--dur-toque) var(--curva-entrada),
     box-shadow var(--dur-toque) var(--curva-entrada),
@@ -107,21 +135,23 @@
 }
 
 .opcion:hover {
-  background: var(--blue-050);
+  box-shadow: inset 0 0 0 2px var(--blue-100);
 }
 
+/* El indicador es un anillo abierto que se cierra sobre la respuesta:
+   el mismo gesto que hace Simple al señalar. */
 .opcion__punto {
   flex: none;
-  width: 12px;
-  height: 12px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: var(--cloud);
+  background: transparent;
   box-shadow: inset 0 0 0 2px var(--blue-100);
 }
 
 .opcion__texto {
-  font-size: var(--texto-item);
-  line-height: 1.45;
+  font-size: var(--texto-grande);
+  line-height: 1.4;
   color: var(--ink);
 }
 
@@ -134,7 +164,9 @@
 
 .opcion[data-elegida] .opcion__punto {
   background: var(--blue-500);
-  box-shadow: 0 0 0 4px var(--blue-100);
+  box-shadow:
+    inset 0 0 0 2px var(--blue-500),
+    0 0 0 6px var(--blue-100);
 }
 
 .opcion[data-elegida] .opcion__texto {
@@ -148,9 +180,26 @@
 
 .opcion--continuar {
   justify-content: center;
-  max-width: 15ch;
-  margin: 40px auto 0;
+  min-height: 64px;
+  max-width: 16ch;
+  margin: 48px auto 0;
+  color: var(--cloud);
   text-align: center;
+  background: var(--blue-500);
+}
+
+.opcion--continuar:hover {
+  background: var(--blue-700);
+  box-shadow: none;
+}
+
+.opcion--continuar .opcion__texto {
+  font-weight: 600;
+  color: var(--cloud);
+}
+
+.opcion--continuar .opcion__punto {
+  box-shadow: inset 0 0 0 2px var(--cloud);
 }
 
 /* --- Contador agregado ----------------------------------------------- */
@@ -202,7 +251,7 @@
 }
 
 .barra__etiqueta {
-  font-size: var(--texto-base);
+  font-size: var(--texto-item);
   color: var(--slate);
 }
 
@@ -216,9 +265,9 @@
 
 .barra__pista {
   grid-column: 1;
-  height: 8px;
-  background: var(--mist);
-  border-radius: 4px;
+  height: 12px;
+  background: var(--cloud);
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -226,7 +275,7 @@
   display: block;
   height: 100%;
   background: var(--blue-100);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 /* La respuesta de quien está mirando es lo único que se destaca. */
@@ -242,16 +291,22 @@
 
 /* --- Cierre ---------------------------------------------------------- */
 
+.cierre {
+  padding: clamp(32px, 5vw, 56px);
+  background: var(--blue-700);
+  border-radius: 20px;
+}
+
 .cierre__gracias {
   max-width: 22ch;
   margin: 0 auto;
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-size: clamp(1.5rem, 3.4vw, 2.125rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-wrap: balance;
-  color: var(--ink);
+  color: var(--cloud);
 }
 
 .cierre__aprendiendo {
@@ -259,7 +314,7 @@
   margin: var(--e3) auto 0;
   font-size: var(--texto-item);
   line-height: 1.6;
-  color: var(--slate);
+  color: var(--blue-100);
 }
 
 /* --- Transición entre momentos --------------------------------------- */
@@ -283,6 +338,6 @@
 
 @media (min-width: 720px) {
   .validacion {
-    padding: 128px var(--e4);
+    padding: 144px var(--e4);
   }
 }

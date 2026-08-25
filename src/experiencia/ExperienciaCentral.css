@@ -9,15 +9,43 @@
   display: grid;
   place-items: center;
   padding: clamp(16px, 3vh, 40px) var(--e3);
+  /* Superficie propia: el corazón del producto se separa del resto. */
+  background: var(--blue-050);
 }
 
 .experiencia {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--e2);
   width: 100%;
   max-width: 680px;
+}
+
+/* El escenario de la demostración: una superficie propia que separa el
+   corazón del producto del resto de la página. No compite con la demo:
+   vive por debajo y no tiene más función que dar profundidad. */
+.experiencia::before {
+  content: '';
+  position: absolute;
+  inset: -24px -20px;
+  border-radius: 32px;
+  background: var(--cloud);
+  box-shadow: 0 0 0 1.5px var(--blue-100);
+  z-index: 0;
+}
+
+@media (min-width: 900px) {
+  .experiencia::before {
+    inset: -48px -56px;
+    border-radius: 44px;
+  }
+}
+
+.experiencia > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* El bloqueo se dice con palabras, nunca se ilustra. */

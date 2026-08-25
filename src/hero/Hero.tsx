@@ -20,6 +20,9 @@ export function Hero({ destino }: { destino: string }) {
     <section className="hero">
       <div className="hero__interior">
         <span className="hero__emblema" aria-hidden="true">
+          <span className="hero__halo" data-anillo="3" />
+          <span className="hero__halo" data-anillo="2" />
+          <span className="hero__halo" data-anillo="1" />
           <span className="hero__disco" />
           <SimboloSimple className="hero__simbolo" />
         </span>
@@ -29,6 +32,11 @@ export function Hero({ destino }: { destino: string }) {
         <a className="hero__cta" href={`#${destino}`}>
           {CTA}
         </a>
+
+        {/* El trazo que baja: Simple siempre señala hacia el siguiente paso. */}
+        <span className="hero__descenso" aria-hidden="true">
+          <span className="hero__descenso-punto" />
+        </span>
       </div>
     </section>
   )

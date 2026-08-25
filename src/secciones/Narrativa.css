@@ -1,470 +1,508 @@
 /* ---------------------------------------------------------------------
-   Narrativa · tres composiciones, una por momento.
-
-   Solo tokens existentes. Sin verde, sin iconos genéricos, sin flechas,
-   sin nada en movimiento. El azul aparece únicamente donde hay acción,
-   guía o énfasis; el resto lo hacen el espacio, la escala y el trazo.
+   Narrativa · tres composiciones, un momento cada una.
+   Solo tokens existentes. Sin verde, sin degradados llamativos, sin
+   iconos genéricos y sin nada en movimiento.
    --------------------------------------------------------------------- */
 
 .seccion {
-  padding: 88px var(--e3);
+  padding: 96px var(--e3);
 }
 
 .seccion--problema {
-  background: var(--blue-050);
-}
-
-.seccion--como {
   background: var(--cloud);
 }
 
-.seccion--beneficio {
+.seccion--como {
   background: var(--mist);
+}
+
+.seccion--beneficio {
+  background: var(--cloud);
 }
 
 .seccion__interior {
   width: 100%;
-  max-width: 680px;
+  max-width: 940px;
   margin: 0 auto;
+  text-align: center;
+}
+
+.seccion__eyebrow {
+  margin: 0 0 var(--e2);
+  font-size: var(--texto-base);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
 }
 
 .seccion__titular {
+  max-width: 20ch;
+  margin: 0 auto;
   font-family: var(--fuente-display);
   font-weight: 800;
-  line-height: 1.1;
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
   color: var(--ink);
 }
 
-/* =====================================================================
-   PROBLEMA · el vacío
-   Un anillo grande y abierto, sin punto dentro: todavía no hay siguiente
-   paso. Las cuatro dudas lo rodean a distintas escalas, pesos y
-   distancias, y se van acercando y oscureciendo hasta la que de verdad
-   frena.
-   ===================================================================== */
+/* --- Glifos · un solo vocabulario ------------------------------------ */
 
-.seccion--problema .seccion__titular {
-  max-width: 16ch;
-  font-size: clamp(2rem, 5vw, 2.75rem);
+.glifo {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
+
+.g-trazo,
+.g-halo {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.g-trazo {
+  stroke: currentColor;
+}
+
+.g-halo {
+  stroke: currentColor;
+  opacity: 0.28;
+}
+
+.g-punto {
+  fill: currentColor;
+}
+
+.g-tenue {
+  fill: currentColor;
+  opacity: 0.3;
+}
+
+/* =====================================================================
+   PROBLEMA · el bloqueo
+   Un núcleo con halos en el centro y las dudas alrededor como burbujas.
+   ===================================================================== */
 
 .bloqueo {
   position: relative;
   display: grid;
-  margin-top: 64px;
   justify-items: center;
+  margin-top: 64px;
+}
+
+.bloqueo__nucleo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 172px;
+  height: 172px;
+}
+
+.bloqueo__halo {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bloqueo__halo[data-capa='1'] {
+  width: 172px;
+  height: 172px;
+  background: var(--blue-050);
+}
+
+.bloqueo__halo[data-capa='2'] {
+  width: 250px;
+  height: 250px;
+  background: color-mix(in srgb, var(--blue-050) 55%, var(--cloud));
 }
 
 .bloqueo__anillo {
-  width: clamp(150px, 22vw, 230px);
-  height: clamp(150px, 22vw, 230px);
+  position: relative;
+  width: 112px;
+  height: 112px;
   overflow: visible;
 }
 
 .bloqueo__anillo circle {
   fill: none;
-  stroke: var(--blue-100);
-  stroke-width: 2;
+  stroke: color-mix(in srgb, var(--blue-500) 45%, var(--blue-050));
+  stroke-width: 3.5;
   stroke-linecap: round;
-  /* Abertura de 70°, en la diagonal de avance. */
-  stroke-dasharray: 228 55;
+  stroke-dasharray: 224 53;
   transform: rotate(-128deg);
   transform-origin: center;
 }
 
-.bloqueo__voz {
-  font-family: var(--fuente-display);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+.burbuja-duda {
+  position: relative;
+  max-width: 20ch;
+  margin: 0;
+  padding: 18px 22px;
+  font-size: clamp(1.0625rem, 2.4vw, 1.1875rem);
+  line-height: 1.35;
+  color: var(--ink);
+  background: var(--mist);
+  border-radius: 20px;
   text-wrap: balance;
-  color: var(--slate);
 }
 
-.bloqueo__voz[data-voz='1'] {
-  margin-top: 44px;
-  font-size: clamp(1.125rem, 3.2vw, 1.375rem);
+.burbuja-duda[data-voz='1'] {
+  margin-top: 40px;
+  border-bottom-left-radius: 6px;
 }
 
-.bloqueo__voz[data-voz='2'] {
-  margin-top: 28px;
-  font-size: clamp(1.25rem, 3.6vw, 1.5rem);
+.burbuja-duda[data-voz='2'] {
+  margin-top: 16px;
+  border-bottom-right-radius: 6px;
 }
 
-.bloqueo__voz[data-voz='3'] {
-  margin-top: 32px;
-  font-size: clamp(1.375rem, 4.2vw, 1.75rem);
-  color: var(--ink);
+.burbuja-duda[data-voz='3'] {
+  margin-top: 16px;
+  border-bottom-left-radius: 6px;
 }
 
-.bloqueo__voz[data-voz='4'] {
-  margin-top: 36px;
-  font-size: clamp(1.5rem, 5vw, 2.125rem);
-  font-weight: 800;
-  color: var(--ink);
+/* La duda que de verdad frena: la única sobre azul. */
+.burbuja-duda[data-voz='4'] {
+  margin-top: 16px;
+  font-weight: 600;
+  color: var(--blue-700);
+  background: var(--blue-050);
+  border-bottom-right-radius: 6px;
 }
 
 /* =====================================================================
-   CÓMO FUNCIONA · el recorrido
-   Un camino con nodos numerados. El trazo entra en azul de acción justo
-   al llegar a «Confirma»: ahí empieza lo que diferencia a Simple, y los
-   tres últimos pasos crecen con él. El último nodo es el anillo de guía
-   que el visitante acaba de ver en la demostración.
+   CÓMO FUNCIONA · tres fases conectadas
    ===================================================================== */
 
-.seccion--como {
-  padding-block: 112px;
-}
-
-.seccion--como .seccion__interior {
+.recorrido {
   display: grid;
-  gap: 56px;
-  max-width: 940px;
+  gap: 0;
+  margin-top: 64px;
 }
 
-.seccion--como .seccion__titular {
-  max-width: 16ch;
-  font-size: clamp(1.875rem, 4.4vw, 2.5rem);
-}
-
-.camino {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.camino__paso {
+.fase {
   position: relative;
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  align-content: start;
-  column-gap: var(--e3);
-  padding-bottom: 40px;
+  padding: 40px 0;
 }
 
-.camino__paso:last-child {
-  padding-bottom: 0;
-}
-
-/* El trazo que acompaña, recortado en el centro del primer nodo. */
-.camino__paso::before {
+/* La conexión entre fases: el trazo no se interrumpe. */
+.fase + .fase::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 21px;
+  top: -18px;
+  left: 50%;
   width: 2px;
+  height: 36px;
+  margin-left: -1px;
   background: var(--blue-100);
 }
 
-.camino__paso:first-child::before {
-  top: 16px;
-}
-
-.camino__paso[data-peso='fuerte']::before {
-  background: var(--blue-500);
-}
-
-/* La transición: el trazo cambia de tono exactamente en el nodo 4. */
-.camino__paso[data-inicio]::before {
-  background: linear-gradient(var(--blue-100) 0 22px, var(--blue-500) 22px);
-}
-
-.camino__paso:last-child::before {
-  bottom: calc(100% - 22px);
-}
-
-.camino__nodo {
-  position: relative;
-  z-index: 1;
-  grid-row: 1 / 3;
-  align-self: start;
-  justify-self: center;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  margin-top: 0;
+.fase__etiqueta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e2);
+  margin: 0 0 var(--e4);
   font-size: 0.875rem;
   font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--slate);
-  background: var(--cloud);
-  border: 2px solid var(--blue-100);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.fase__etiqueta::before,
+.fase__etiqueta::after {
+  content: '';
+  width: clamp(28px, 8vw, 72px);
+  height: 1.5px;
+  background: var(--blue-100);
+}
+
+.fase__pasos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e3);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.hito {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* El enlace entre los dos pasos de una misma fase. */
+.hito__enlace {
+  position: absolute;
+  top: 36px;
+  right: calc(50% + 44px);
+  width: calc(100% - 12px);
+  height: 2px;
+  background: var(--blue-100);
+}
+
+.hito__enlace::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--blue-100);
+}
+
+.hito__nodo {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  padding: 18px;
   border-radius: 50%;
 }
 
-.camino__paso[data-peso='fuerte'] .camino__nodo {
-  width: 44px;
-  height: 44px;
-  font-size: var(--texto-base);
-  color: var(--cloud);
-  background: var(--blue-500);
-  border-color: var(--blue-500);
-}
-
-/* El anillo de guía se posa sobre el último paso. */
-.camino__paso[data-final] .camino__nodo {
-  color: var(--blue-700);
-  background: var(--cloud);
-  border-color: var(--blue-500);
-  box-shadow: 0 0 0 7px var(--blue-100);
-}
-
-.camino__titulo {
-  align-self: center;
+.hito__titulo {
+  margin: var(--e2) 0 0;
   font-size: var(--texto-grande);
   font-weight: 600;
   line-height: 1.2;
   color: var(--ink);
 }
 
-.camino__linea {
-  padding-top: 6px;
-  font-size: var(--texto-item);
-  line-height: 1.6;
+.hito__linea {
+  max-width: 22ch;
+  margin: 6px 0 0;
+  font-size: var(--texto-base);
+  line-height: 1.5;
   color: var(--slate);
+  text-wrap: balance;
 }
 
-.camino__paso[data-peso='fuerte'] .camino__titulo {
+/* Cada fase pesa más que la anterior: es lo que diferencia a Simple. */
+.fase[data-fase='1'] .hito__nodo {
+  color: var(--blue-500);
+  background: var(--cloud);
+}
+
+.fase[data-fase='2'] .hito__nodo {
+  width: 80px;
+  height: 80px;
+  padding: 19px;
+  color: var(--blue-700);
+  background: var(--blue-050);
+}
+
+.fase[data-fase='3'] .hito__nodo {
+  width: 88px;
+  height: 88px;
+  padding: 21px;
+  color: var(--cloud);
+  background: var(--blue-500);
+  box-shadow: 0 0 0 8px var(--blue-050);
+}
+
+.fase[data-fase='2'] .hito__enlace {
+  top: 40px;
+}
+
+.fase[data-fase='3'] .hito__enlace {
+  top: 44px;
+}
+
+.fase[data-fase='3'] .hito__titulo {
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-size: clamp(1.375rem, 2.6vw, 1.625rem);
   letter-spacing: -0.02em;
 }
 
-.camino__paso[data-peso='fuerte'] .camino__linea {
-  font-size: var(--texto-grande);
+.fase[data-fase='3'] .hito__linea {
+  font-size: var(--texto-item);
   color: var(--ink);
 }
 
-/* El destino del recorrido, no otro párrafo. */
+/* El destino del recorrido, no un párrafo al final. */
 .principio {
-  max-width: none;
-  margin: 0;
-  padding: clamp(32px, 5vw, 56px);
+  max-width: 26ch;
+  margin: 64px auto 0;
+  padding: clamp(28px, 4vw, 44px) clamp(28px, 5vw, 56px);
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
   line-height: 1.2;
   letter-spacing: -0.03em;
   text-wrap: balance;
-  color: var(--ink);
-  background: var(--blue-050);
-  border-radius: var(--radio-superficie);
+  color: var(--cloud);
+  background: var(--blue-500);
+  border-radius: 20px;
 }
 
 /* =====================================================================
-   BENEFICIO · el cierre
-   Cuatro marcas del mismo vocabulario —punto, trazo y halo— que crecen
-   hasta la última, la única sobre superficie y la que sostiene todo lo
-   anterior.
+   BENEFICIO · tres piezas y un cierre profundo
    ===================================================================== */
-
-.seccion--beneficio .seccion__titular {
-  max-width: 18ch;
-  font-size: clamp(1.875rem, 4.4vw, 2.5rem);
-}
-
-.marca {
-  width: 32px;
-  height: 32px;
-  overflow: visible;
-}
-
-.marca__trazo,
-.marca__halo {
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
-.marca__trazo {
-  stroke: var(--blue-500);
-}
-
-.marca__halo {
-  stroke: var(--blue-100);
-}
-
-.marca__punto {
-  fill: var(--blue-500);
-}
-
-.marca__tenue {
-  fill: var(--blue-100);
-}
 
 .consecuencias {
   display: grid;
-  gap: var(--e5);
-  margin: 56px 0 0;
+  gap: var(--e3);
+  margin: 64px 0 0;
   padding: 0;
   list-style: none;
+  text-align: left;
 }
 
 .consecuencias__item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  padding: clamp(24px, 3vw, 32px);
+  background: var(--mist);
+  border-radius: 20px;
+}
+
+.consecuencias__glifo {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 16px;
+  color: var(--blue-500);
+  background: var(--cloud);
+  border-radius: 50%;
 }
 
 .consecuencias__titulo {
-  font-size: var(--texto-base);
-  font-weight: 500;
-  color: var(--slate);
-}
-
-.consecuencias__linea {
-  font-size: var(--texto-grande);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--ink);
-}
-
-.consecuencias__item[data-cierre] {
-  gap: var(--e2);
-  margin-top: var(--e2);
-  padding: clamp(28px, 4vw, 44px);
-  background: var(--cloud);
-  border-radius: var(--radio-superficie);
-}
-
-.consecuencias__item[data-cierre] .marca {
-  width: 44px;
-  height: 44px;
-}
-
-.consecuencias__item[data-cierre] .consecuencias__titulo {
+  margin-top: var(--e3);
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   letter-spacing: -0.02em;
   color: var(--ink);
 }
 
-.consecuencias__item[data-cierre] .consecuencias__linea {
+.consecuencias__linea {
+  margin-top: 6px;
   font-size: var(--texto-item);
-  font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--slate);
+}
+
+/* El cierre: la única pieza en azul profundo. */
+.consecuencias__item[data-cierre] {
+  align-items: center;
+  padding: clamp(32px, 5vw, 56px);
+  text-align: center;
+  background: var(--blue-700);
+}
+
+.consecuencias__item[data-cierre] .consecuencias__glifo {
+  width: 88px;
+  height: 88px;
+  padding: 22px;
+  color: var(--cloud);
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--blue-500);
+}
+
+.consecuencias__item[data-cierre] .consecuencias__titulo {
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+  color: var(--cloud);
+}
+
+.consecuencias__item[data-cierre] .consecuencias__linea {
+  max-width: 30ch;
+  font-size: var(--texto-grande);
+  color: var(--blue-100);
 }
 
 /* ===================================================================== */
 
-@media (max-width: 639px) {
-  .seccion--problema .seccion__titular {
-    max-width: 18ch;
-  }
-}
-
 @media (min-width: 720px) {
   .seccion {
-    padding: 128px var(--e4);
+    padding: 144px var(--e4);
   }
 
-  .seccion--como {
-    padding-block: 160px;
-  }
-
-  /* Las dudas necesitan medida de lectura propia: la sección se ensancha
-     para que orbiten sin partirse. */
-  .seccion--problema .seccion__interior {
-    max-width: 940px;
-  }
-
-  /* Las dudas orbitan el vacío: cada una a su distancia, su escala y su
-     lado. El anillo queda en el centro, sin punto dentro. */
+  /* Las dudas orbitan el bloqueo. */
   .bloqueo {
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto auto auto;
     grid-template-areas:
-      'v1 . .'
-      'v2 anillo v3'
-      '. . v4';
+      'v1 nucleo v3'
+      'v2 nucleo v4';
     align-items: center;
-    column-gap: clamp(16px, 3vw, 40px);
-    row-gap: clamp(24px, 4vw, 48px);
-    margin-top: 72px;
+    column-gap: clamp(24px, 4vw, 56px);
+    row-gap: var(--e3);
+    margin-top: 80px;
   }
 
-  .bloqueo__anillo {
-    grid-area: anillo;
+  .bloqueo__nucleo {
+    grid-area: nucleo;
   }
 
-  .bloqueo__voz {
+  .burbuja-duda {
     margin-top: 0;
   }
 
-  .bloqueo__voz[data-voz='1'] {
+  .burbuja-duda[data-voz='1'] {
     grid-area: v1;
     justify-self: end;
-    text-align: right;
   }
 
-  .bloqueo__voz[data-voz='2'] {
+  .burbuja-duda[data-voz='2'] {
     grid-area: v2;
     justify-self: end;
-    text-align: right;
+    margin-right: clamp(0px, 3vw, 40px);
   }
 
-  .bloqueo__voz[data-voz='3'] {
+  .burbuja-duda[data-voz='3'] {
     grid-area: v3;
     justify-self: start;
-    text-align: left;
+    margin-left: clamp(0px, 3vw, 40px);
   }
 
-  .bloqueo__voz[data-voz='4'] {
+  .burbuja-duda[data-voz='4'] {
     grid-area: v4;
     justify-self: start;
-    text-align: left;
-  }
-}
-
-@media (min-width: 900px) {
-  /* El titular se queda a un lado y el recorrido avanza al otro. */
-  .seccion--como .seccion__interior {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
-    column-gap: 72px;
-    row-gap: 72px;
-    align-items: center;
   }
 
-  .seccion--como .seccion__titular {
-    align-self: center;
-  }
-
-  .principio {
-    grid-column: 1 / -1;
-    max-width: 30ch;
-    justify-self: center;
-    text-align: center;
-  }
-
-  /* Dos consecuencias tranquilas, una que se ensancha, y el cierre a lo
-     ancho: la escalera se ve antes de leerse. */
   .consecuencias {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--e5);
-    row-gap: 64px;
-  }
-
-  .consecuencias__item:nth-child(1) {
-    grid-column: 1 / 6;
-  }
-
-  .consecuencias__item:nth-child(2) {
-    grid-column: 7 / 13;
-  }
-
-  .consecuencias__item:nth-child(3) {
-    grid-column: 1 / 9;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--e3);
   }
 
   .consecuencias__item[data-cierre] {
     grid-column: 1 / -1;
+    margin-top: var(--e2);
+  }
+}
+
+@media (max-width: 719px) {
+  /* En móvil el recorrido mantiene los dos pasos por fase, más pequeños:
+     sigue siendo un camino, no una columna de texto. */
+  .hito__nodo {
+    width: 60px;
+    height: 60px;
+    padding: 14px;
+  }
+
+  .fase[data-fase='2'] .hito__nodo,
+  .fase[data-fase='3'] .hito__nodo {
+    width: 66px;
+    height: 66px;
+    padding: 16px;
+  }
+
+  .hito__enlace,
+  .fase[data-fase='2'] .hito__enlace,
+  .fase[data-fase='3'] .hito__enlace {
+    top: 30px;
+  }
+
+  .fase__pasos {
+    gap: var(--e2);
   }
 }
