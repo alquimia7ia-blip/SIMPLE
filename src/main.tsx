@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ExperienciaCentral } from './experiencia/ExperienciaCentral'
 import { Hero } from './hero/Hero'
+import { Narrativa } from './secciones/Narrativa'
 import './estilos/tokens.css'
 import './estilos/base.css'
 
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <section id={EXPERIENCIA} className="pagina">
         <ExperienciaCentral />
       </section>
+      <Narrativa />
     </main>
   </StrictMode>,
 )
