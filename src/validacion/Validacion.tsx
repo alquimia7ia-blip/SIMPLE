@@ -60,6 +60,22 @@ export function Validacion() {
     return () => window.clearTimeout(temporizador.current)
   }, [])
 
+  /* Volver a empezar: limpia lo respondido y el progreso, sin recargar.
+     El id de sesión se conserva a propósito: la fila de esta persona se
+     actualiza en lugar de duplicarse, así el contador no se infla. */
+  const responderDeNuevo = useCallback(() => {
+    window.clearTimeout(temporizador.current)
+    try {
+      localStorage.removeItem(CLAVE_RESPUESTAS)
+    } catch {
+      /* sin almacenamiento: la experiencia continúa */
+    }
+    setRespuestas({})
+    setElegida(null)
+    setAgregado(null)
+    setMomento(0)
+  }, [])
+
   const guardarLocal = useCallback((siguientes: Respuestas) => {
     try {
       localStorage.setItem(CLAVE_RESPUESTAS, JSON.stringify(siguientes))
@@ -194,6 +210,9 @@ export function Validacion() {
             <div className="cierre">
               <p className="cierre__gracias">{GRACIAS}</p>
               <p className="cierre__aprendiendo">{APRENDIENDO}</p>
+              <button type="button" className="cierre__reiniciar" onClick={responderDeNuevo}>
+                Responder de nuevo
+              </button>
             </div>
           )}
         </div>

@@ -194,6 +194,46 @@
   color: color-mix(in srgb, var(--blue-100) 72%, var(--blue-700));
 }
 
+.principios {
+  display: grid;
+  gap: 14px;
+  margin: var(--e5) 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.principios__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--fuente-display);
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  letter-spacing: -0.01em;
+  color: var(--cloud);
+}
+
+.principios__punto {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--blue-100);
+}
+
+/* El principio que sostiene todo lo demás. */
+.principios__item:nth-child(3) .principios__punto {
+  width: 16px;
+  height: 16px;
+  background: var(--cloud);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--cloud) 22%, transparent);
+}
+
+.principios__item:nth-child(3) {
+  font-weight: 800;
+}
+
 /* --- Para quién ------------------------------------------------------- */
 
 .quien__linea {
@@ -327,5 +367,12 @@
 
   .contraste {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .principios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e3) var(--e5);
+    max-width: 720px;
+    margin-inline: auto;
   }
 }

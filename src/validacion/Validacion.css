@@ -317,6 +317,29 @@
   color: var(--blue-100);
 }
 
+/* Segunda acción, claramente por debajo del agradecimiento. */
+.cierre__reiniciar {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: var(--e4);
+  padding: 0 var(--e3);
+  font-size: var(--texto-base);
+  font-weight: 500;
+  color: var(--cloud);
+  border-radius: var(--radio-boton);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--blue-100) 55%, transparent);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.cierre__reiniciar:hover {
+  background: color-mix(in srgb, var(--cloud) 12%, transparent);
+}
+
+.cierre__reiniciar:focus-visible {
+  outline-color: var(--cloud);
+}
+
 /* --- Transición entre momentos --------------------------------------- */
 
 .pregunta,

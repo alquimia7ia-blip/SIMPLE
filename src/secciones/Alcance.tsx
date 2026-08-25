@@ -19,6 +19,13 @@ const MOMENTOS = [
   { icono: 'codigo', texto: 'Entender un código de seguridad' },
 ]
 
+const PRINCIPIOS = [
+  'Te guía paso a paso',
+  'Te ayuda a entender',
+  'No hace las cosas por ti',
+  'Mantienes el control',
+]
+
 const NO_ES = [
   'Un chatbot genérico.',
   'Soporte técnico.',
@@ -147,6 +154,15 @@ export function Alcance() {
               <p className="contraste__linea">Aparece sobre tu pantalla y rodea el paso que toca.</p>
             </div>
           </div>
+
+          <ul className="principios">
+            {PRINCIPIOS.map((p) => (
+              <li key={p} className="principios__item">
+                <span className="principios__punto" aria-hidden="true" />
+                {p}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

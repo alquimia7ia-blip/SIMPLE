@@ -19,8 +19,19 @@ export function Cierre() {
           <SimboloSimple className="cierre-final__simbolo" />
         </span>
 
+        {/* La transformación, dicha con dos estados y el punto entre ellos. */}
+        <div className="transformacion">
+          <p className="transformacion__estado" data-momento="antes">
+            “No sé qué hacer.”
+          </p>
+          <span className="transformacion__paso" aria-hidden="true" />
+          <p className="transformacion__estado" data-momento="despues">
+            “Ya sé cuál es el siguiente paso.”
+          </p>
+        </div>
+
         <h2 className="cierre-final__titular" id="cierre-final">
-          Cuando no sabes qué hacer, lo importante es saber cuál es el siguiente paso.
+          No necesitas saberlo todo. Necesitas saber cuál es el siguiente paso.
         </h2>
 
         <a className="cierre-final__cta" href={WHATSAPP} target="_blank" rel="noopener noreferrer">

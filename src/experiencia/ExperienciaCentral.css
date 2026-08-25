@@ -9,8 +9,9 @@
   display: grid;
   place-items: center;
   padding: clamp(16px, 3vh, 40px) var(--e3);
-  /* Superficie propia: el corazón del producto se separa del resto. */
-  background: var(--blue-050);
+  /* Superficie propia y con profundidad: el corazón del producto se
+     separa del resto sin apoyarse en un gris plano. */
+  background: color-mix(in srgb, var(--blue-500) 17%, var(--cloud));
 }
 
 .experiencia {
