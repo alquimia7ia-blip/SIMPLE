@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { ExperienciaCentral } from './experiencia/ExperienciaCentral'
 import { Hero } from './hero/Hero'
 import { Narrativa } from './secciones/Narrativa'
+import { Validacion } from './validacion/Validacion'
 import './estilos/tokens.css'
 import './estilos/base.css'
 
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
         <ExperienciaCentral />
       </section>
       <Narrativa />
+      <Validacion />
     </main>
   </StrictMode>,
 )
