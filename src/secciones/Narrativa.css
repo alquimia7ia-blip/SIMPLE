@@ -1,23 +1,20 @@
 /* ---------------------------------------------------------------------
-   Narrativa · tres composiciones distintas, un mensaje cada una.
+   Narrativa · tres composiciones, una por momento.
 
-   Solo tokens existentes. Sin bordes de separación, sin iconos, sin
-   flechas y sin nada en movimiento: el vacío señala y el color solo
-   confirma. El azul aparece únicamente donde hay guía o énfasis.
+   Solo tokens existentes. Sin verde, sin iconos genéricos, sin flechas,
+   sin nada en movimiento. El azul aparece únicamente donde hay acción,
+   guía o énfasis; el resto lo hacen el espacio, la escala y el trazo.
    --------------------------------------------------------------------- */
 
 .seccion {
   padding: 88px var(--e3);
 }
 
-/* El ritmo entre secciones también es visual: fondo, ancho y aire
-   cambian en cada una. */
 .seccion--problema {
   background: var(--blue-050);
 }
 
 .seccion--como {
-  padding-block: 112px;
   background: var(--cloud);
 }
 
@@ -41,74 +38,90 @@
 }
 
 /* =====================================================================
-   PROBLEMA · el descenso
-   Las dudas bajan, se agrandan y se oscurecen. La última es la que de
-   verdad frena, y por eso es la que más pesa. El sangrado creciente
-   convierte la lectura en una caída, no en una lista.
+   PROBLEMA · el vacío
+   Un anillo grande y abierto, sin punto dentro: todavía no hay siguiente
+   paso. Las cuatro dudas lo rodean a distintas escalas, pesos y
+   distancias, y se van acercando y oscureciendo hasta la que de verdad
+   frena.
    ===================================================================== */
 
 .seccion--problema .seccion__titular {
-  max-width: 14ch;
+  max-width: 16ch;
   font-size: clamp(2rem, 5vw, 2.75rem);
 }
 
-.voces {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.bloqueo {
+  position: relative;
+  display: grid;
+  margin-top: 64px;
+  justify-items: center;
 }
 
-.voces__frase {
+.bloqueo__anillo {
+  width: clamp(150px, 22vw, 230px);
+  height: clamp(150px, 22vw, 230px);
+  overflow: visible;
+}
+
+.bloqueo__anillo circle {
+  fill: none;
+  stroke: var(--blue-100);
+  stroke-width: 2;
+  stroke-linecap: round;
+  /* Abertura de 70°, en la diagonal de avance. */
+  stroke-dasharray: 228 55;
+  transform: rotate(-128deg);
+  transform-origin: center;
+}
+
+.bloqueo__voz {
   font-family: var(--fuente-display);
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: -0.02em;
   text-wrap: balance;
-}
-
-.voces__frase:nth-child(1) {
-  margin-top: 56px;
-  margin-left: 0;
-  font-size: clamp(1.25rem, 3.4vw, 1.5rem);
   color: var(--slate);
 }
 
-.voces__frase:nth-child(2) {
-  margin-top: 40px;
-  margin-left: 8%;
-  font-size: clamp(1.375rem, 4vw, 1.75rem);
-  color: var(--slate);
+.bloqueo__voz[data-voz='1'] {
+  margin-top: 44px;
+  font-size: clamp(1.125rem, 3.2vw, 1.375rem);
 }
 
-.voces__frase:nth-child(3) {
-  margin-top: 52px;
-  margin-left: 16%;
-  font-size: clamp(1.5rem, 4.6vw, 2rem);
+.bloqueo__voz[data-voz='2'] {
+  margin-top: 28px;
+  font-size: clamp(1.25rem, 3.6vw, 1.5rem);
+}
+
+.bloqueo__voz[data-voz='3'] {
+  margin-top: 32px;
+  font-size: clamp(1.375rem, 4.2vw, 1.75rem);
   color: var(--ink);
 }
 
-.voces__frase:nth-child(4) {
-  margin-top: 64px;
-  margin-left: 24%;
-  font-size: clamp(1.625rem, 5.2vw, 2.25rem);
+.bloqueo__voz[data-voz='4'] {
+  margin-top: 36px;
+  font-size: clamp(1.5rem, 5vw, 2.125rem);
   font-weight: 800;
   color: var(--ink);
 }
 
 /* =====================================================================
    CÓMO FUNCIONA · el recorrido
-   El trazo acompaña y no se interrumpe; los nodos ganan peso al llegar
-   al diferencial, y el último recibe el anillo de guía —el mismo trazo
-   Blue 500 con halo Blue 100 que el visitante acaba de ver señalar un
-   botón en la demostración.
+   Un camino con nodos numerados. El trazo entra en azul de acción justo
+   al llegar a «Confirma»: ahí empieza lo que diferencia a Simple, y los
+   tres últimos pasos crecen con él. El último nodo es el anillo de guía
+   que el visitante acaba de ver en la demostración.
    ===================================================================== */
+
+.seccion--como {
+  padding-block: 112px;
+}
 
 .seccion--como .seccion__interior {
   display: grid;
   gap: 56px;
-  max-width: 900px;
+  max-width: 940px;
 }
 
 .seccion--como .seccion__titular {
@@ -116,107 +129,138 @@
   font-size: clamp(1.875rem, 4.4vw, 2.5rem);
 }
 
-.recorrido {
+.camino {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.recorrido__paso {
+.camino__paso {
   position: relative;
   display: grid;
-  grid-template-columns: 26px minmax(0, 1fr);
+  grid-template-columns: 44px minmax(0, 1fr);
   align-content: start;
   column-gap: var(--e3);
-  padding-bottom: 44px;
+  padding-bottom: 40px;
 }
 
-.recorrido__paso:last-child {
+.camino__paso:last-child {
   padding-bottom: 0;
 }
 
-/* El trazo: continuo, recortado en el centro del primer y del último
-   nodo para que empiece y termine exactamente donde empieza y termina
-   el recorrido. */
-.recorrido__paso::before {
+/* El trazo que acompaña, recortado en el centro del primer nodo. */
+.camino__paso::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 12px;
+  left: 21px;
   width: 2px;
   background: var(--blue-100);
 }
 
-.recorrido__paso:first-child::before {
-  top: 15px;
+.camino__paso:first-child::before {
+  top: 16px;
 }
 
-.recorrido__paso:last-child::before {
-  bottom: calc(100% - 15px);
-}
-
-.recorrido__nodo {
-  position: relative;
-  grid-row: 1 / 3;
-  align-self: start;
-  justify-self: center;
-  margin-top: 9px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--blue-100);
-}
-
-.recorrido__paso[data-peso='fuerte'] .recorrido__nodo {
-  width: 14px;
-  height: 14px;
-  margin-top: 8px;
+.camino__paso[data-peso='fuerte']::before {
   background: var(--blue-500);
 }
 
-/* El anillo de guía, posado sobre el último paso. */
-.recorrido__paso[data-final] .recorrido__nodo {
-  width: 26px;
-  height: 26px;
-  margin-top: 2px;
-  background: none;
-  border: 2px solid var(--blue-500);
-  box-shadow: 0 0 0 6px var(--blue-100);
+/* La transición: el trazo cambia de tono exactamente en el nodo 4. */
+.camino__paso[data-inicio]::before {
+  background: linear-gradient(var(--blue-100) 0 22px, var(--blue-500) 22px);
 }
 
-.recorrido__titulo {
+.camino__paso:last-child::before {
+  bottom: calc(100% - 22px);
+}
+
+.camino__nodo {
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-top: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--slate);
+  background: var(--cloud);
+  border: 2px solid var(--blue-100);
+  border-radius: 50%;
+}
+
+.camino__paso[data-peso='fuerte'] .camino__nodo {
+  width: 44px;
+  height: 44px;
+  font-size: var(--texto-base);
+  color: var(--cloud);
+  background: var(--blue-500);
+  border-color: var(--blue-500);
+}
+
+/* El anillo de guía se posa sobre el último paso. */
+.camino__paso[data-final] .camino__nodo {
+  color: var(--blue-700);
+  background: var(--cloud);
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 7px var(--blue-100);
+}
+
+.camino__titulo {
+  align-self: center;
   font-size: var(--texto-grande);
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.2;
   color: var(--ink);
 }
 
-.recorrido__linea {
-  padding-top: 4px;
+.camino__linea {
+  padding-top: 6px;
   font-size: var(--texto-item);
   line-height: 1.6;
   color: var(--slate);
 }
 
-/* El diferencial pesa más: sube la escala y el texto deja de ser
-   secundario. */
-.recorrido__paso[data-peso='fuerte'] .recorrido__titulo {
+.camino__paso[data-peso='fuerte'] .camino__titulo {
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
   letter-spacing: -0.02em;
 }
 
-.recorrido__paso[data-peso='fuerte'] .recorrido__linea {
+.camino__paso[data-peso='fuerte'] .camino__linea {
   font-size: var(--texto-grande);
   color: var(--ink);
 }
 
+/* El destino del recorrido, no otro párrafo. */
+.principio {
+  max-width: none;
+  margin: 0;
+  padding: clamp(32px, 5vw, 56px);
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--ink);
+  background: var(--blue-050);
+  border-radius: var(--radio-superficie);
+}
+
 /* =====================================================================
-   BENEFICIO · la escalera y el cierre
-   Cuatro consecuencias que ganan peso hasta el control, y después el
-   principio rector, solo, con todo el aire para él.
+   BENEFICIO · el cierre
+   Cuatro marcas del mismo vocabulario —punto, trazo y halo— que crecen
+   hasta la última, la única sobre superficie y la que sostiene todo lo
+   anterior.
    ===================================================================== */
 
 .seccion--beneficio .seccion__titular {
@@ -224,9 +268,38 @@
   font-size: clamp(1.875rem, 4.4vw, 2.5rem);
 }
 
+.marca {
+  width: 32px;
+  height: 32px;
+  overflow: visible;
+}
+
+.marca__trazo,
+.marca__halo {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.marca__trazo {
+  stroke: var(--blue-500);
+}
+
+.marca__halo {
+  stroke: var(--blue-100);
+}
+
+.marca__punto {
+  fill: var(--blue-500);
+}
+
+.marca__tenue {
+  fill: var(--blue-100);
+}
+
 .consecuencias {
   display: grid;
-  gap: var(--e4);
+  gap: var(--e5);
   margin: 56px 0 0;
   padding: 0;
   list-style: none;
@@ -235,74 +308,60 @@
 .consecuencias__item {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-.consecuencias__item:not([data-cierre]) .consecuencias__titulo {
+.consecuencias__titulo {
   font-size: var(--texto-base);
   font-weight: 500;
   color: var(--slate);
 }
 
-.consecuencias__item:not([data-cierre]) .consecuencias__linea {
-  padding-top: 2px;
+.consecuencias__linea {
   font-size: var(--texto-grande);
   font-weight: 500;
   line-height: 1.4;
   color: var(--ink);
 }
 
-.consecuencias__linea {
-  font-size: var(--texto-item);
-  line-height: 1.6;
-  color: var(--slate);
-}
-
-/* La última consecuencia es la que sostiene el principio que viene
-   detrás: se separa, sube de escala y es la única sobre superficie. */
 .consecuencias__item[data-cierre] {
-  gap: 6px;
+  gap: var(--e2);
   margin-top: var(--e2);
-  padding: var(--e4);
+  padding: clamp(28px, 4vw, 44px);
   background: var(--cloud);
   border-radius: var(--radio-superficie);
+}
+
+.consecuencias__item[data-cierre] .marca {
+  width: 44px;
+  height: 44px;
 }
 
 .consecuencias__item[data-cierre] .consecuencias__titulo {
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
   letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
 .consecuencias__item[data-cierre] .consecuencias__linea {
-  font-size: var(--texto-grande);
-  color: var(--ink);
+  font-size: var(--texto-item);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--slate);
 }
 
-.principio {
-  max-width: 32ch;
-  margin: 88px auto 0;
-  font-family: var(--fuente-display);
-  font-weight: 500;
-  font-size: clamp(1.5rem, 3.4vw, 2rem);
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  text-align: center;
-  text-wrap: balance;
-  color: var(--ink);
-}
+/* ===================================================================== */
 
 @media (max-width: 639px) {
-  /* Menos aire por lado deja respirar mejor a los titulares grandes. */
   .seccion--problema .seccion__titular {
     max-width: 18ch;
   }
 }
 
-/* ===================================================================== */
-
-@media (min-width: 900px) {
+@media (min-width: 720px) {
   .seccion {
     padding: 128px var(--e4);
   }
@@ -311,21 +370,98 @@
     padding-block: 160px;
   }
 
-  /* El titular se queda a la izquierda y el recorrido avanza a su
-     derecha: la sección se lee como un trayecto, no como una página. */
+  /* Las dudas necesitan medida de lectura propia: la sección se ensancha
+     para que orbiten sin partirse. */
+  .seccion--problema .seccion__interior {
+    max-width: 940px;
+  }
+
+  /* Las dudas orbitan el vacío: cada una a su distancia, su escala y su
+     lado. El anillo queda en el centro, sin punto dentro. */
+  .bloqueo {
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      'v1 . .'
+      'v2 anillo v3'
+      '. . v4';
+    align-items: center;
+    column-gap: clamp(16px, 3vw, 40px);
+    row-gap: clamp(24px, 4vw, 48px);
+    margin-top: 72px;
+  }
+
+  .bloqueo__anillo {
+    grid-area: anillo;
+  }
+
+  .bloqueo__voz {
+    margin-top: 0;
+  }
+
+  .bloqueo__voz[data-voz='1'] {
+    grid-area: v1;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .bloqueo__voz[data-voz='2'] {
+    grid-area: v2;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .bloqueo__voz[data-voz='3'] {
+    grid-area: v3;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .bloqueo__voz[data-voz='4'] {
+    grid-area: v4;
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (min-width: 900px) {
+  /* El titular se queda a un lado y el recorrido avanza al otro. */
   .seccion--como .seccion__interior {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: 72px;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+    column-gap: 72px;
+    row-gap: 72px;
     align-items: center;
   }
 
-  /* Dos consecuencias tranquilas, una que sube, y el cierre a lo ancho:
-     la escalera se ve antes de leerse. */
-  /* Tres consecuencias tranquilas en una línea, y el control a lo ancho
-     debajo: la escalera se ve antes de leerse. */
+  .seccion--como .seccion__titular {
+    align-self: center;
+  }
+
+  .principio {
+    grid-column: 1 / -1;
+    max-width: 30ch;
+    justify-self: center;
+    text-align: center;
+  }
+
+  /* Dos consecuencias tranquilas, una que se ensancha, y el cierre a lo
+     ancho: la escalera se ve antes de leerse. */
   .consecuencias {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--e5);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--e5);
+    row-gap: 64px;
+  }
+
+  .consecuencias__item:nth-child(1) {
+    grid-column: 1 / 6;
+  }
+
+  .consecuencias__item:nth-child(2) {
+    grid-column: 7 / 13;
+  }
+
+  .consecuencias__item:nth-child(3) {
+    grid-column: 1 / 9;
   }
 
   .consecuencias__item[data-cierre] {
