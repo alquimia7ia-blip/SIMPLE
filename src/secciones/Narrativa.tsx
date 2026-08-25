@@ -3,9 +3,17 @@
 
     PROBLEMA  →  CÓMO FUNCIONA SIMPLE  →  BENEFICIO
 
-  Tres secciones, un mensaje cada una y nada que se mueva mientras se lee.
-  El bloqueo se dice con palabras y nunca se ilustra: el Manual pide
-  dibujar el instante anterior a actuar, jamás la impotencia.
+  Cada sección tiene una composición distinta, y ninguna es una lista.
+
+  - El problema desciende: las dudas se van haciendo más grandes y más
+    oscuras hasta la que de verdad frena, y el sangrado crece con ellas.
+  - El recorrido usa el lenguaje del propio producto: un trazo continuo
+    que acompaña, nodos que ganan peso, y el anillo de guía —el mismo de
+    la demostración— posándose sobre el último paso.
+  - El beneficio es una escalera de consecuencias que termina en el
+    control, y cierra con el principio rector.
+
+  Nada se mueve. La jerarquía la hacen el espacio, la escala y el peso.
 */
 
 import './Narrativa.css'
@@ -33,6 +41,9 @@ const BENEFICIOS = [
   { titulo: 'Mantienes el control', linea: 'Simple te muestra dónde tocar. Tocas tú.' },
 ]
 
+/* El diferencial empieza aquí: confirmar, guiar y mostrar. */
+const DIFERENCIAL = 3
+
 export function Narrativa() {
   return (
     <>
@@ -56,18 +67,20 @@ export function Narrativa() {
           <h2 className="seccion__titular" id="como">
             No tienes que buscar cómo hacerlo. Solo decir qué necesitas.
           </h2>
-          <ol className="pasos">
+          <ol className="recorrido">
             {PASOS.map((paso, i) => (
-              <li key={paso.titulo} className="pasos__paso">
-                <span className="pasos__orden" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <span className="pasos__titulo">{paso.titulo}</span>
-                <span className="pasos__linea">{paso.linea}</span>
+              <li
+                key={paso.titulo}
+                className="recorrido__paso"
+                data-peso={i < DIFERENCIAL ? 'suave' : 'fuerte'}
+                data-final={i === PASOS.length - 1 || undefined}
+              >
+                <span className="recorrido__nodo" aria-hidden="true" />
+                <span className="recorrido__titulo">{paso.titulo}</span>
+                <span className="recorrido__linea">{paso.linea}</span>
               </li>
             ))}
           </ol>
-          <p className="seccion__cierre">Simple no hace las cosas por ti. Te ayuda a hacerlas tú.</p>
         </div>
       </section>
 
@@ -76,14 +89,19 @@ export function Narrativa() {
           <h2 className="seccion__titular" id="beneficio">
             Menos dudas. Más claridad para continuar.
           </h2>
-          <ul className="beneficios">
-            {BENEFICIOS.map((b) => (
-              <li key={b.titulo} className="beneficios__item">
-                <span className="beneficios__titulo">{b.titulo}</span>
-                <span className="beneficios__linea">{b.linea}</span>
+          <ul className="consecuencias">
+            {BENEFICIOS.map((b, i) => (
+              <li
+                key={b.titulo}
+                className="consecuencias__item"
+                data-cierre={i === BENEFICIOS.length - 1 || undefined}
+              >
+                <span className="consecuencias__titulo">{b.titulo}</span>
+                <span className="consecuencias__linea">{b.linea}</span>
               </li>
             ))}
           </ul>
+          <p className="principio">Simple no hace las cosas por ti. Te ayuda a hacerlas tú.</p>
         </div>
       </section>
     </>

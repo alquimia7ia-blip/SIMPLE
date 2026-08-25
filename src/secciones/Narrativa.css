@@ -1,18 +1,23 @@
 /* ---------------------------------------------------------------------
-   Narrativa · problema, cómo funciona, beneficio.
-   Solo tokens existentes. Sin bordes: la superficie separa, la línea no.
-   Sin nada en movimiento: nada se mueve mientras se está leyendo.
+   Narrativa · tres composiciones distintas, un mensaje cada una.
+
+   Solo tokens existentes. Sin bordes de separación, sin iconos, sin
+   flechas y sin nada en movimiento: el vacío señala y el color solo
+   confirma. El azul aparece únicamente donde hay guía o énfasis.
    --------------------------------------------------------------------- */
 
 .seccion {
-  padding: 72px var(--e3);
+  padding: 88px var(--e3);
 }
 
+/* El ritmo entre secciones también es visual: fondo, ancho y aire
+   cambian en cada una. */
 .seccion--problema {
   background: var(--blue-050);
 }
 
 .seccion--como {
+  padding-block: 112px;
   background: var(--cloud);
 }
 
@@ -21,33 +26,35 @@
 }
 
 .seccion__interior {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--e5);
   width: 100%;
   max-width: 680px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .seccion__titular {
-  max-width: 24ch;
   font-family: var(--fuente-display);
   font-weight: 800;
-  font-size: clamp(1.75rem, 3.6vw, 2rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   text-wrap: balance;
   color: var(--ink);
 }
 
-/* --- Problema · las voces ------------------------------------------- */
+/* =====================================================================
+   PROBLEMA · el descenso
+   Las dudas bajan, se agrandan y se oscurecen. La última es la que de
+   verdad frena, y por eso es la que más pesa. El sangrado creciente
+   convierte la lectura en una caída, no en una lista.
+   ===================================================================== */
+
+.seccion--problema .seccion__titular {
+  max-width: 14ch;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
 
 .voces {
   display: flex;
   flex-direction: column;
-  gap: var(--e4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -56,104 +63,272 @@
 .voces__frase {
   font-family: var(--fuente-display);
   font-weight: 500;
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
-  line-height: 1.3;
+  line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--ink);
   text-wrap: balance;
 }
 
-/* --- Cómo funciona · la secuencia ------------------------------------ */
-
-.pasos {
-  display: grid;
-  gap: var(--e4) var(--e5);
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: left;
-}
-
-.pasos__paso {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-content: start;
-  column-gap: var(--e2);
-  row-gap: 2px;
-}
-
-/* El orden es información: la secuencia solo se entiende en su orden. */
-.pasos__orden {
-  grid-row: 1 / 3;
-  font-size: var(--texto-base);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.6;
+.voces__frase:nth-child(1) {
+  margin-top: 56px;
+  margin-left: 0;
+  font-size: clamp(1.25rem, 3.4vw, 1.5rem);
   color: var(--slate);
 }
 
-.pasos__titulo {
-  font-size: var(--texto-grande);
-  font-weight: 600;
+.voces__frase:nth-child(2) {
+  margin-top: 40px;
+  margin-left: 8%;
+  font-size: clamp(1.375rem, 4vw, 1.75rem);
+  color: var(--slate);
+}
+
+.voces__frase:nth-child(3) {
+  margin-top: 52px;
+  margin-left: 16%;
+  font-size: clamp(1.5rem, 4.6vw, 2rem);
   color: var(--ink);
 }
 
-.pasos__linea {
+.voces__frase:nth-child(4) {
+  margin-top: 64px;
+  margin-left: 24%;
+  font-size: clamp(1.625rem, 5.2vw, 2.25rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* =====================================================================
+   CÓMO FUNCIONA · el recorrido
+   El trazo acompaña y no se interrumpe; los nodos ganan peso al llegar
+   al diferencial, y el último recibe el anillo de guía —el mismo trazo
+   Blue 500 con halo Blue 100 que el visitante acaba de ver señalar un
+   botón en la demostración.
+   ===================================================================== */
+
+.seccion--como .seccion__interior {
+  display: grid;
+  gap: 56px;
+  max-width: 900px;
+}
+
+.seccion--como .seccion__titular {
+  max-width: 16ch;
+  font-size: clamp(1.875rem, 4.4vw, 2.5rem);
+}
+
+.recorrido {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recorrido__paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-content: start;
+  column-gap: var(--e3);
+  padding-bottom: 44px;
+}
+
+.recorrido__paso:last-child {
+  padding-bottom: 0;
+}
+
+/* El trazo: continuo, recortado en el centro del primer y del último
+   nodo para que empiece y termine exactamente donde empieza y termina
+   el recorrido. */
+.recorrido__paso::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12px;
+  width: 2px;
+  background: var(--blue-100);
+}
+
+.recorrido__paso:first-child::before {
+  top: 15px;
+}
+
+.recorrido__paso:last-child::before {
+  bottom: calc(100% - 15px);
+}
+
+.recorrido__nodo {
+  position: relative;
+  grid-row: 1 / 3;
+  align-self: start;
+  justify-self: center;
+  margin-top: 9px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--blue-100);
+}
+
+.recorrido__paso[data-peso='fuerte'] .recorrido__nodo {
+  width: 14px;
+  height: 14px;
+  margin-top: 8px;
+  background: var(--blue-500);
+}
+
+/* El anillo de guía, posado sobre el último paso. */
+.recorrido__paso[data-final] .recorrido__nodo {
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+  background: none;
+  border: 2px solid var(--blue-500);
+  box-shadow: 0 0 0 6px var(--blue-100);
+}
+
+.recorrido__titulo {
+  font-size: var(--texto-grande);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.recorrido__linea {
+  padding-top: 4px;
   font-size: var(--texto-item);
   line-height: 1.6;
   color: var(--slate);
 }
 
-.seccion__cierre {
-  max-width: 34ch;
+/* El diferencial pesa más: sube la escala y el texto deja de ser
+   secundario. */
+.recorrido__paso[data-peso='fuerte'] .recorrido__titulo {
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  letter-spacing: -0.02em;
+}
+
+.recorrido__paso[data-peso='fuerte'] .recorrido__linea {
   font-size: var(--texto-grande);
-  font-weight: 500;
-  line-height: 1.45;
-  text-wrap: balance;
   color: var(--ink);
 }
 
-/* --- Beneficio ------------------------------------------------------- */
+/* =====================================================================
+   BENEFICIO · la escalera y el cierre
+   Cuatro consecuencias que ganan peso hasta el control, y después el
+   principio rector, solo, con todo el aire para él.
+   ===================================================================== */
 
-.beneficios {
-  display: grid;
-  gap: var(--e3);
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: left;
+.seccion--beneficio .seccion__titular {
+  max-width: 18ch;
+  font-size: clamp(1.875rem, 4.4vw, 2.5rem);
 }
 
-.beneficios__item {
+.consecuencias {
+  display: grid;
+  gap: var(--e4);
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.consecuencias__item {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: var(--e3);
+}
+
+.consecuencias__item:not([data-cierre]) .consecuencias__titulo {
+  font-size: var(--texto-base);
+  font-weight: 500;
+  color: var(--slate);
+}
+
+.consecuencias__item:not([data-cierre]) .consecuencias__linea {
+  padding-top: 2px;
+  font-size: var(--texto-grande);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.consecuencias__linea {
+  font-size: var(--texto-item);
+  line-height: 1.6;
+  color: var(--slate);
+}
+
+/* La última consecuencia es la que sostiene el principio que viene
+   detrás: se separa, sube de escala y es la única sobre superficie. */
+.consecuencias__item[data-cierre] {
+  gap: 6px;
+  margin-top: var(--e2);
+  padding: var(--e4);
   background: var(--cloud);
   border-radius: var(--radio-superficie);
 }
 
-.beneficios__titulo {
+.consecuencias__item[data-cierre] .consecuencias__titulo {
+  font-family: var(--fuente-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  letter-spacing: -0.02em;
+}
+
+.consecuencias__item[data-cierre] .consecuencias__linea {
   font-size: var(--texto-grande);
-  font-weight: 600;
   color: var(--ink);
 }
 
-.beneficios__linea {
-  font-size: var(--texto-item);
-  line-height: 1.6;
-  color: var(--slate);
+.principio {
+  max-width: 32ch;
+  margin: 88px auto 0;
+  font-family: var(--fuente-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
 }
 
-@media (min-width: 640px) {
+@media (max-width: 639px) {
+  /* Menos aire por lado deja respirar mejor a los titulares grandes. */
+  .seccion--problema .seccion__titular {
+    max-width: 18ch;
+  }
+}
+
+/* ===================================================================== */
+
+@media (min-width: 900px) {
   .seccion {
-    padding: 120px var(--e4);
+    padding: 128px var(--e4);
   }
 
-  .pasos,
-  .beneficios {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .seccion--como {
+    padding-block: 160px;
+  }
+
+  /* El titular se queda a la izquierda y el recorrido avanza a su
+     derecha: la sección se lee como un trayecto, no como una página. */
+  .seccion--como .seccion__interior {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* Dos consecuencias tranquilas, una que sube, y el cierre a lo ancho:
+     la escalera se ve antes de leerse. */
+  /* Tres consecuencias tranquilas en una línea, y el control a lo ancho
+     debajo: la escalera se ve antes de leerse. */
+  .consecuencias {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--e5);
+  }
+
+  .consecuencias__item[data-cierre] {
+    grid-column: 1 / -1;
   }
 }
