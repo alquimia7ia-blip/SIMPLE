@@ -29,10 +29,6 @@
   background: color-mix(in srgb, var(--sage) 22%, var(--cloud));
 }
 
-.seccion--noes {
-  background: var(--cloud);
-}
-
 /* --- Cuándo puede ayudar --------------------------------------------- */
 
 .momentos {
@@ -298,13 +294,22 @@
   background: var(--blue-500);
 }
 
-/* --- Qué no es -------------------------------------------------------- */
+/* --- Qué no es · dentro de la misma sección --------------------------- */
 
 .noes {
   display: grid;
   gap: var(--e3);
-  margin-top: 56px;
+  margin-top: 72px;
+  padding-top: 56px;
   text-align: left;
+  border-top: 1.5px solid color-mix(in srgb, var(--sage) 55%, var(--cloud));
+}
+
+.noes__rotulo {
+  margin: 0;
+  font-size: var(--texto-item);
+  color: var(--slate);
+  text-align: center;
 }
 
 .noes__lista {
@@ -321,13 +326,13 @@
   padding: 14px 22px;
   font-size: var(--texto-item);
   color: var(--slate);
-  background: var(--mist);
+  background: var(--cloud);
   border-radius: 999px;
 }
 
 .noes__si {
   max-width: 34ch;
-  margin: var(--e3) auto 0;
+  margin: var(--e2) auto 0;
   padding: clamp(24px, 3.4vw, 36px);
   font-family: var(--fuente-display);
   font-weight: 800;
@@ -337,8 +342,33 @@
   text-align: center;
   text-wrap: balance;
   color: var(--cloud);
-  background: var(--blue-500);
+  background: var(--blue-700);
   border-radius: 20px;
+}
+
+/* Contacto a media página: quien ya se reconoció puede escribir aquí. */
+.contacto-medio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  margin: 56px auto 0;
+  padding: 0 var(--e5);
+  font-size: var(--texto-item);
+  font-weight: 600;
+  color: var(--cloud);
+  text-decoration: none;
+  background: var(--blue-500);
+  border-radius: var(--radio-boton);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.contacto-medio:hover {
+  background: var(--blue-700);
+}
+
+.contacto-medio:active {
+  transform: translateY(2px);
 }
 
 /* ===================================================================== */

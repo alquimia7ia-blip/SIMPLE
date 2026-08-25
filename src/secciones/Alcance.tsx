@@ -8,6 +8,7 @@
   sin nada que se mueva mientras se lee.
 */
 
+import { CTA_CONTACTO, WHATSAPP } from '../marca/enlaces'
 import './Alcance.css'
 
 const MOMENTOS = [
@@ -21,9 +22,9 @@ const MOMENTOS = [
 
 const PRINCIPIOS = [
   'Te guía paso a paso',
-  'Te ayuda a entender',
-  'No hace las cosas por ti',
-  'Mantienes el control',
+  'Le hablas con tus palabras',
+  'Te señala dónde actuar',
+  'No lo hace por ti: lo haces tú',
 ]
 
 const NO_ES = [
@@ -166,10 +167,10 @@ export function Alcance() {
         </div>
       </section>
 
-      {/* ---------- PARA QUIÉN ---------- */}
+      {/* ---------- PARA QUIÉN ES · Y QUÉ NO ES ---------- */}
       <section className="seccion seccion--quien" aria-labelledby="quien">
         <div className="seccion__interior">
-          <p className="seccion__eyebrow">Para quién</p>
+          <p className="seccion__eyebrow">Para quién es</p>
           <h2 className="seccion__titular" id="quien">
             Para quien usa el celular todos los días y a veces se enreda.
           </h2>
@@ -185,18 +186,9 @@ export function Alcance() {
               <li key={i} className="banda__anillo" data-i={i} data-activo={i === 4 || undefined} />
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* ---------- QUÉ NO ES ---------- */}
-      <section className="seccion seccion--noes" aria-labelledby="noes">
-        <div className="seccion__interior">
-          <p className="seccion__eyebrow">Para que no haya dudas</p>
-          <h2 className="seccion__titular" id="noes">
-            Lo que Simple no es.
-          </h2>
 
           <div className="noes">
+            <p className="noes__rotulo">Y para que no haya dudas, Simple no es:</p>
             <ul className="noes__lista">
               {NO_ES.map((n) => (
                 <li key={n} className="noes__item">
@@ -209,8 +201,18 @@ export function Alcance() {
               paso.
             </p>
           </div>
+
+          <a
+            className="contacto-medio"
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {CTA_CONTACTO}
+          </a>
         </div>
       </section>
+
     </>
   )
 }

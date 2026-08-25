@@ -10,6 +10,7 @@
 */
 
 import { SimboloSimple } from '../marca/SimboloSimple'
+import { CTA_CONTACTO, WHATSAPP } from '../marca/enlaces'
 import './Hero.css'
 
 const HEADLINE = 'Cuando no sepas qué hacer con el celular, pregúntale a Simple.'
@@ -29,9 +30,20 @@ export function Hero({ destino }: { destino: string }) {
 
         <h1 className="hero__titular">{HEADLINE}</h1>
 
-        <a className="hero__cta" href={`#${destino}`}>
-          {CTA}
-        </a>
+        <div className="hero__acciones">
+          <a className="hero__cta" href={`#${destino}`}>
+            {CTA}
+          </a>
+          {/* Contactar no exige recorrer toda la página. */}
+          <a
+            className="hero__contacto"
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {CTA_CONTACTO}
+          </a>
+        </div>
 
         {/* El trazo que baja: Simple siempre señala hacia el siguiente paso. */}
         <span className="hero__descenso" aria-hidden="true">

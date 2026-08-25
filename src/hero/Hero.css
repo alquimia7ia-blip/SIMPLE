@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(20px, 3.6vh, 44px);
+  gap: clamp(18px, 3.2vh, 40px);
   text-align: center;
 }
 
@@ -98,6 +98,14 @@
   color: var(--ink);
 }
 
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
 .hero__cta {
   display: inline-flex;
   align-items: center;
@@ -117,6 +125,29 @@
 }
 
 .hero__cta:active {
+  transform: translateY(2px);
+}
+
+/* Segunda acción: visible, pero claramente por debajo de la primera. */
+.hero__contacto {
+  display: inline-flex;
+  align-items: center;
+  min-height: 64px;
+  padding: 0 var(--e4);
+  font-size: var(--texto-item);
+  font-weight: 500;
+  color: var(--blue-700);
+  text-decoration: none;
+  border-radius: var(--radio-boton);
+  box-shadow: inset 0 0 0 1.5px var(--blue-100);
+  transition: background var(--dur-toque) var(--curva-entrada);
+}
+
+.hero__contacto:hover {
+  background: var(--blue-050);
+}
+
+.hero__contacto:active {
   transform: translateY(2px);
 }
 
