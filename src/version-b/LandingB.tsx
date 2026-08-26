@@ -4,8 +4,8 @@
   Estructura — 6 momentos en vez de los 10 de la Versión A:
 
     HERO → PROBLEMA → SOLUCIÓN (con la demo real) → DIFERENCIA → PARA
-    QUIÉN (con el primer contacto) → CIERRE (el componente ya existente,
-    con el contacto final)
+    QUIÉN (con el primer contacto) → VALIDACIÓN (las 3 preguntas
+    táctiles, reutilizadas sin cambios) → CIERRE (con el contacto final)
 
   Se fusionan deliberadamente "cómo funciona" dentro de "solución" —la
   demo interactiva ya demuestra el mecanismo, explicarlo aparte era
@@ -16,6 +16,7 @@
 
 import { HeroB } from './HeroB'
 import { ProblemaB, SolucionB, DiferenciaB, OfertaB } from './SeccionesB'
+import { Validacion } from '../validacion/Validacion'
 import { Cierre } from '../cierre/Cierre'
 
 const DEMO = 'demo-b'
@@ -28,6 +29,7 @@ export function LandingB() {
       <SolucionB id={DEMO} />
       <DiferenciaB />
       <OfertaB />
+      <Validacion />
       <Cierre />
     </main>
   )
