@@ -1,0 +1,375 @@
+/* ---------------------------------------------------------------------
+   Versión D · una sola pantalla
+
+   Todo bajo `.landing-d` con clases planas `d-*`. Los tokens nuevos se
+   declaran dentro de `.landing-d`, nunca en `:root`: A, B y C quedan
+   intactas.
+
+   El cristal es la única licencia que se toma sobre el Manual, y se toma
+   en modo claro: Cloud translúcido sobre el campo teñido, con una
+   hairline de Blue 100. Ninguna superficie de cristal lleva texto por
+   debajo de 16px y ninguna usa Slate a menos de ese tamaño.
+   --------------------------------------------------------------------- */
+
+.landing-d {
+  --d-margen: clamp(20px, 5vw, 56px);
+  --d-ancho: 1240px;
+
+  /* Cristal claro */
+  --d-cristal: color-mix(in srgb, var(--cloud) 66%, transparent);
+  --d-cristal-borde: color-mix(in srgb, var(--blue-100) 78%, transparent);
+
+  --d-voz: clamp(1.75rem, 1.1rem + 2.8vw, 3.25rem);
+
+  background: var(--cloud);
+}
+
+.d-pantalla {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--cloud);
+}
+
+/* --- El campo a sangre ------------------------------------------------
+   El símbolo a escala de fondo. No es una ilustración ni una figura: es
+   la marca, dibujada desde el único sitio donde se dibuja. */
+
+.d-campo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.d-campo__simbolo {
+  position: absolute;
+  right: -26vmin;
+  bottom: -30vmin;
+  width: min(128vmin, 1180px);
+  height: min(128vmin, 1180px);
+  color: color-mix(in srgb, var(--blue-500) 12%, var(--cloud));
+}
+
+.d-campo__halo {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.d-campo__halo[data-capa='1'] {
+  right: -14vmin;
+  top: -16vmin;
+  width: min(96vmin, 900px);
+  height: min(96vmin, 900px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--blue-500) 13%, transparent) 0%,
+    transparent 66%
+  );
+}
+
+.d-campo__halo[data-capa='2'] {
+  left: -24vmin;
+  top: -20vmin;
+  width: min(96vmin, 880px);
+  height: min(96vmin, 880px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--blue-500) 10%, transparent) 0%,
+    transparent 68%
+  );
+}
+
+/* --- Estructura -------------------------------------------------------- */
+
+.d-capa {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+.d-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e2);
+  width: 100%;
+  max-width: var(--d-ancho);
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 32px) var(--d-margen);
+}
+
+/* El contenido se ancla abajo: es la arquitectura de la referencia. */
+.d-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vw, 48px);
+  width: 100%;
+  max-width: var(--d-ancho);
+  margin: auto auto 0;
+  padding: clamp(32px, 5vw, 56px) var(--d-margen) clamp(28px, 4vw, 64px);
+}
+
+@media (min-width: 1000px) {
+  .d-cuerpo {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--e5);
+  }
+}
+
+/* --- Marca -------------------------------------------------------------- */
+
+.d-marca {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--e2);
+}
+
+.d-marca__emblema {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  place-items: center;
+  color: var(--blue-700);
+}
+
+.d-marca__simbolo {
+  width: 100%;
+  height: 100%;
+}
+
+.d-marca__nombre {
+  font-family: var(--fuente-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* --- Cristal ------------------------------------------------------------ */
+
+.d-cristal {
+  background: var(--d-cristal);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 0 0 1px var(--d-cristal-borde);
+}
+
+.d-chip {
+  display: none;
+  padding: 8px var(--e2);
+  border-radius: 999px;
+  font-size: var(--texto-base);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+@media (min-width: 760px) {
+  .d-chip {
+    display: inline-block;
+  }
+}
+
+/* --- Voces · el Manual manda -------------------------------------------- */
+
+.d-rotulo {
+  margin: 0;
+  font-size: var(--texto-base);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.d-persona {
+  max-width: 26ch;
+  margin: 0;
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.45;
+  color: var(--slate);
+}
+
+.d-simple {
+  max-width: 17ch;
+  margin: var(--e2) 0 0;
+  font-family: var(--fuente-display);
+  font-size: var(--d-voz);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.021em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.d-consecuencia {
+  max-width: 34ch;
+  margin: var(--e3) 0 0;
+  font-size: var(--texto-item);
+  line-height: 1.55;
+  color: var(--slate);
+}
+
+/* --- Acciones · Blue 500 nunca toca texto ------------------------------- */
+
+.d-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e2);
+  margin-top: clamp(24px, 3vw, 32px);
+}
+
+.d-cta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  padding: 0 var(--e3);
+  border-radius: var(--radio-boton);
+  background: var(--blue-700);
+  color: var(--cloud);
+  font-size: var(--texto-item);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--dur-toque) var(--curva-salida);
+}
+
+.d-cta:hover {
+  background: color-mix(in srgb, var(--ink) 18%, var(--blue-700));
+}
+
+.d-cta--secundario {
+  background: var(--d-cristal);
+  color: var(--blue-700);
+  box-shadow: inset 0 0 0 1px var(--d-cristal-borde);
+}
+
+.d-cta--secundario:hover {
+  background: var(--blue-050);
+}
+
+/* En pantallas estrechas la barra solo lleva marca: el contacto ya vive
+   en el bloque de abajo y repetirlo ahí arriba solo roba sitio. */
+.d-cta--barra {
+  display: none;
+  min-height: 44px;
+  font-size: var(--texto-base);
+}
+
+@media (min-width: 620px) {
+  .d-cta--barra {
+    display: inline-flex;
+  }
+}
+
+/* --- Las dos tarjetas ---------------------------------------------------- */
+
+.d-tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+  width: 100%;
+}
+
+@media (min-width: 620px) {
+  .d-tarjetas {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1000px) {
+  .d-tarjetas {
+    width: auto;
+    flex: none;
+    gap: var(--e3);
+  }
+}
+
+.d-tarjeta {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--e3);
+  border-radius: 20px;
+}
+
+@media (min-width: 620px) {
+  .d-tarjeta {
+    width: 264px;
+    flex: none;
+  }
+}
+
+.d-tarjeta__voz {
+  text-wrap: balance;
+  margin: var(--e2) 0 0;
+  font-style: italic;
+  font-size: var(--texto-grande);
+  line-height: 1.4;
+  color: var(--slate);
+}
+
+.d-tarjeta__dice {
+  margin: var(--e2) 0 0;
+  font-family: var(--fuente-display);
+  font-size: var(--texto-instruccion);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.d-tarjeta__linea {
+  margin: auto 0 0;
+  padding-top: var(--e3);
+  font-size: var(--texto-base);
+  line-height: 1.55;
+  color: var(--slate);
+}
+
+/* --- Los marcadores ------------------------------------------------------
+   La pregunta es un círculo que no llega a cerrarse; la respuesta es el
+   anillo, y es el único Blue 500 a plena fuerza de la página. */
+
+.d-marcador {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  overflow: visible;
+}
+
+.d-marcador circle {
+  fill: none;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.d-marcador__abierto {
+  stroke: var(--slate);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 6;
+  opacity: 0.75;
+}
+
+.d-marcador__anillo {
+  stroke: var(--blue-500);
+  stroke-width: 2;
+  /* 2πr con r = 17 */
+  stroke-dasharray: 106.814;
+  stroke-dashoffset: 106.814;
+  transition: stroke-dashoffset var(--dur-anillo) var(--curva-guia);
+}
+
+.d-marcador[data-cerrado] .d-marcador__anillo {
+  stroke-dashoffset: 0;
+}
